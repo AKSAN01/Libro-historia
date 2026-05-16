@@ -1,69 +1,67 @@
-import { useState, useEffect } from "react";
-import { CoverPage } from "./pages/CoverPage";
-import { ReadingPage } from "./pages/ReadingPage";
-import { TransitionOverlay } from "./components/TransitionOverlay";
-import { decades } from "./data/decades";
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { BookLayout } from './components/BookLayout';
+import { WelcomePage } from './components/WelcomePage';
+import { IndexMenu } from './components/IndexMenu';
+import { Timeline } from './components/Timeline';
+import { DecadePage } from './components/DecadePage';
 
-const FONT_URL = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Syne:wght@400;600;700;800&display=swap";
-
-export default function App() {
-  const [stage, setStage] = useState("cover");
-  const [decade, setDecade] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
-
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = FONT_URL;
-    document.head.appendChild(link);
-    return () => document.head.removeChild(link);
-  }, []);
-
-  const openBook = () => {
-    setTransitioning(true);
-    setTimeout(() => {
-      setStage("reading");
-      setTransitioning(false);
-    }, 150);
-  };
-
-  const goNext = () => {
-    if (transitioning || decade >= decades.length - 1) return;
-    setTransitioning(true);
-    setTimeout(() => {
-      setDecade(d => d + 1);
-    }, 100);
-    setTimeout(() => {
-      setTransitioning(false);
-    }, 200);
-  };
-
-  const goPrev = () => {
-    if (transitioning || decade <= 0) return;
-    setTransitioning(true);
-    setTimeout(() => {
-      setDecade(d => d - 1);
-    }, 100);
-    setTimeout(() => {
-      setTransitioning(false);
-    }, 200);
-  };
-
+function IndexView() {
   return (
-    <div style={{ width: "100%", height: "100vh", overflow: "hidden", background: "#000" }}>
-      <TransitionOverlay visible={transitioning} />
-      {stage === "cover" ? (
-        <CoverPage onOpen={openBook} />
-      ) : (
-        <ReadingPage
-          decade={decade}
-          onNext={goNext}
-          onPrev={goPrev}
-          isFirst={decade === 0}
-          isLast={decade === decades.length - 1}
-          flipping={transitioning}
-        />
-      )}
-    </div>
+    <>
+      <BookLayout 
+        leftPage={<WelcomePage />} 
+        rightPage={<IndexMenu />} 
+      />
+      <div style={styles.bottomBar}>
+        <div style={styles.periodLabel}>
+          <span>1960 – Actualidad</span>
+        </div>
+      </div>
+    </>
   );
 }
+
+export default function App() {
+  const location = useLocation();
+  const isTimeline = location.pathname === '/timeline';
+
+  return (
+    <>
+      {!isTimeline && <div className="noise-overlay"></div>}
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<IndexView />} />
+          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/decade/:tag" element={<DecadePage />} />
+        </Routes>
+      </AnimatePresence>
+    </>
+  );
+}
+
+const styles = {
+  bottomBar: {
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingBottom: '15px',
+    zIndex: 1000,
+    pointerEvents: 'none',
+  },
+  periodLabel: {
+    backgroundColor: 'var(--leather-brown)',
+    color: 'var(--aged-gold)',
+    padding: '5px 20px',
+    borderRadius: '4px',
+    fontFamily: 'var(--font-text)',
+    fontSize: '0.9rem',
+    border: '1px solid #3d2618',
+    boxShadow: '0 4px 6px rgba(0,0,0,0.5)',
+    letterSpacing: '0.05em',
+  }
+};

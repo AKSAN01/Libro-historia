@@ -1,16 +1,10 @@
-# React + Vite
+# Proyecto: Historia de Colombia Interactivo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Visión General
+Una aplicación web interactiva diseñada para presentar la historia de Colombia (1960-2026) bajo el concepto de un "Libro Histórico Interactivo". El diseño es inmersivo, utilizando texturas de papel, efectos de lomo de cuero y sombras profundas, combinando la lectura clásica con elementos multimedia modernos.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 2. Tecnologías y Frameworks Principales
+- **React 19 + Vite**: Motor principal de la aplicación. Vite asegura una compilación ultra rápida.
+- **Framer Motion**: Librería para orquestar micro-interacciones (hover en los libros de la línea de tiempo) y transiciones de páginas (Fade-in / Fade-out al cambiar de décadas).
+- **GSAP**: Incluido para futuras animaciones complejas (como scroll interactivo o animaciones secuenciales en ciertas hojas).
+- **React Router DOM**: Para el enrutamiento modular. Permite navegar entre el `Índice`, la `Línea del tiempo` y las diferentes `Décadas` sin recargar la página.
