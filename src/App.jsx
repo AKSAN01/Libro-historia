@@ -6,7 +6,7 @@ import { WelcomePage } from './components/WelcomePage';
 import { IndexMenu } from './components/IndexMenu';
 import { Timeline } from './components/Timeline';
 import { DecadePage } from './components/DecadePage';
-import './App.css';
+import Decada2010 from './components/Decada2010';
 
 function IndexView() {
   return (
@@ -35,6 +35,11 @@ export default function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<IndexView />} />
           <Route path="/timeline" element={<Timeline />} />
+          
+          {/* Ruta corregida para coincidir con el tag "10s" de tu archivo de datos */}
+          <Route path="/decade/10s" element={<Decada2010 />} />
+          
+          {/* Ruta genérica para el resto de décadas */}
           <Route path="/decade/:tag" element={<DecadePage />} />
         </Routes>
       </AnimatePresence>

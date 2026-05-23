@@ -7,24 +7,40 @@ import { Placeholder } from './Placeholder';
 
 export const DecadePage = () => {
   const { tag } = useParams();
+  // Buscamos la década, si no existe el tag, devolvemos null
   const decadeData = decades.find(d => d.tag === tag);
 
+  // Pantalla de error si la década no existe
   if (!decadeData) {
-    return <div>Década no encontrada.</div>;
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: '#fff' }}>
+        <div>
+          <h2>Década no encontrada.</h2>
+          <Link to="/timeline" style={{ color: '#d6bc8e' }}>Volver a la estantería</Link>
+        </div>
+      </div>
+    );
   }
 
   const LeftPage = () => (
     <div style={styles.pageContent}>
       <Link to="/timeline" style={styles.backLink}>← Volver a la estantería</Link>
-      <h3 style={{...styles.subtitle, color: decadeData.accentColor}}>CAPÍTULO {decadeData.index + 1}</h3>
+      
+      {/* Añadimos un fallback al índice por si acaso no está definido en el objeto */}
+      <h3 style={{...styles.subtitle, color: decadeData.accentColor || '#d6bc8e'}}>
+        CAPÍTULO {decadeData.index !== undefined ? decadeData.index + 1 : '...'}
+      </h3>
+      
       <h1 style={styles.title}>{decadeData.period}</h1>
       <h2 style={styles.chapterTitle}>{decadeData.title}</h2>
       
       <p style={styles.description}>{decadeData.description}</p>
       
-      <div style={styles.factBox}>
-        <strong>Dato clave:</strong> {decadeData.fact}
-      </div>
+      {decadeData.fact && (
+        <div style={styles.factBox}>
+          <strong>Dato clave:</strong> {decadeData.fact}
+        </div>
+      )}
     </div>
   );
 
@@ -33,8 +49,9 @@ export const DecadePage = () => {
       <Placeholder type="video" height="300px" text="Video documental de la década" />
       
       <div style={styles.cardsContainer}>
-        {decadeData.cards.map((card, idx) => (
-          <div key={idx} style={{...styles.card, borderLeftColor: card.color}}>
+        {/* Añadimos un check para asegurarnos que 'cards' existe */}
+        {decadeData.cards && decadeData.cards.map((card, idx) => (
+          <div key={idx} style={{...styles.card, borderLeftColor: card.color || '#d6bc8e'}}>
             <span style={styles.cardIcon}>{card.icon}</span>
             <div>
               <h4 style={styles.cardTitle}>{card.title}</h4>
