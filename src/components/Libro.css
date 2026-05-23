@@ -1,0 +1,86 @@
+.fondo-escritorio {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at top, #f8f2e6 0%, #ebe0cc 45%, #d6c0a2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.libro-abierto {
+  width: min(1200px, 100%);
+  background: #f7f0e6;
+  border: 1px solid rgba(214, 188, 142, 0.85);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 26, 43, 0.18);
+  display: grid;
+  grid-template-columns: 1fr 1rem 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.marcador-ribbon {
+  position: absolute;
+  top: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 47, 76, 0.95);
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  z-index: 2;
+}
+
+.pagina {
+  padding: 2rem;
+  min-height: 620px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.pagina-izquierda {
+  border-right: 1px solid rgba(214, 188, 142, 0.35);
+}
+
+.pliegue-central {
+  background: linear-gradient(180deg, rgba(214, 188, 142, 0.25), rgba(214, 188, 142, 0.45));
+  width: 1rem;
+}
+
+.margen-interno {
+  width: 100%;
+  max-width: 540px;
+}
+
+.contenido-pagina {
+  width: 100%;
+}
+
+.animate-fade {
+  animation: fadeIn 0.6s ease both;
+}
+
+.barra-inferior {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: linear-gradient(90deg, rgba(214, 188, 142, 0.95), rgba(154, 120, 79, 0.95));
+}
+
+.contenedor-subtitulos > div {
+  transition: all 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

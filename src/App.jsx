@@ -6,6 +6,7 @@ import { WelcomePage } from './components/WelcomePage';
 import { IndexMenu } from './components/IndexMenu';
 import { Timeline } from './components/Timeline';
 import { DecadePage } from './components/DecadePage';
+import './App.css';
 
 function IndexView() {
   return (
