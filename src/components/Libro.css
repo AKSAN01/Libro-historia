@@ -1,94 +1,250 @@
+/* EL ENTORNO */
 .fondo-escritorio {
-  min-height: 100vh;
-  padding: 2rem 1rem;
-  background: radial-gradient(circle at top, #f8f2e6 0%, #ebe0cc 45%, #d6c0a2 100%);
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-color: #2b2b2b;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.libro-abierto {
-  width: min(1200px, 100%);
-  background: #f7f0e6;
-  border: 1px solid rgba(214, 188, 142, 0.85);
-  border-radius: 28px;
-  box-shadow: 0 24px 60px rgba(15, 26, 43, 0.18);
-  display: grid;
-  grid-template-columns: 1fr 1rem 1fr;
+/* 1. LA PASTA VERDE OSCURO (Cubierta del libro) */
+.pasta-libro-verde {
+  position: relative;
+  display: flex;
+  width: 1000px;
+  height: 680px;
+  /* Degradado para simular iluminación sobre el cuero verde oscuro */
+  background: linear-gradient(to right, #2a3328 0%, #3a4536 5%, #4a5445 50%, #3a4536 95%, #2a3328 100%);
+  border-radius: 12px;
+  padding: 15px 25px; /* Deja que la pasta asome por fuera de las hojas */
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.8), /* Oscuridad en los bordes de la tapa */
+    0 30px 50px rgba(0,0,0,0.6); /* Sombra pesada contra el escritorio */
+  
+  /* Borde dorado exterior en la tapa verde */
+  outline: 2px solid #5d4a31;
+  outline-offset: -10px;
+}
+
+/* MARCADOR DE TELA */
+.marcador-ribbon-puro {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 45px;
+  height: 50px;
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid #8b7355;
+}
+
+.marcador-ribbon-puro span {
+  color: #d6bc8e;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+/* 2. LAS HOJAS Y EL EFECTO DE APILAMIENTO */
+.hoja-libro {
+  flex: 1;
+  /* Color crema/pergamino */
+  background: linear-gradient(to right, #ebdcb7, #f4e8ce, #ebdcb7);
   position: relative;
   overflow: hidden;
 }
 
-.marcador-ribbon {
-  position: absolute;
-  top: 1.4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(26, 47, 76, 0.95);
-  padding: 0.8rem 1.6rem;
-  border-radius: 999px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
-  z-index: 2;
+.hoja-izquierda {
+  border-radius: 5px 0 0 5px;
+  /* Sombra interna para el lomo y sombras externas simulando hojas apiladas a la izquierda */
+  box-shadow: 
+    inset -30px 0 30px -15px rgba(0, 0, 0, 0.4), /* Sombra del centro */
+    -2px 2px 0px #d3c29e, /* Capa de hoja 1 */
+    -4px 4px 0px #e4d3af, /* Capa de hoja 2 */
+    -6px 6px 0px #c2b28c; /* Capa de hoja 3 */
 }
 
-.pagina {
-  padding: 2rem;
-  min-height: 620px;
+.hoja-derecha {
+  border-radius: 0 5px 5px 0;
+  /* Sombra interna para el lomo y sombras externas simulando hojas apiladas a la derecha */
+  box-shadow: 
+    inset 30px 0 30px -15px rgba(0, 0, 0, 0.4), /* Sombra del centro */
+    2px 2px 0px #d3c29e, /* Capa de hoja 1 */
+    4px 4px 0px #e4d3af, /* Capa de hoja 2 */
+    6px 6px 0px #c2b28c; /* Capa de hoja 3 */
+}
+
+/* El hundimiento exacto en el medio de las dos páginas */
+.lomo-central {
+  width: 2px;
+  background-color: #a89473;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+
+/* 3. EL MARCO DORADO ELEGANTE (Doble línea) */
+.marco-dorado-css {
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  /* Simula el marco doble dorado del libro original */
+  border: 1px solid #a38c62;
+  outline: 2px solid #a38c62;
+  outline-offset: -5px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.marco-izquierdo { left: 30px; right: 45px; }
+.marco-derecho { left: 45px; right: 30px; }
+
+/* 4. TIPOGRAFÍA Y ESTRUCTURA (Idéntico a tu imagen) */
+.contenido-texto-libro {
+  font-family: 'Georgia', serif;
+  color: #1a1a1a;
+  height: 100%;
+}
+
+.layout-col { display: flex; flex-direction: column; height: 100%; }
+.layout-center { justify-content: center; }
+.space-between { justify-content: space-between; }
+
+.titulo-principal {
+  font-size: 1.8rem;
+  color: #3b2c17;
+  text-align: center;
+  margin: 0 0 5px 0;
+  font-weight: bold;
+}
+
+.subtitulo-principal {
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 5px 0;
+  color: #1a1a1a;
+}
+
+.tema-principal {
+  color: #6b5334;
+  text-align: center;
+  font-style: normal;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #a38c62;
+  padding-bottom: 15px;
+  margin: 0 0 25px 0;
+}
+
+.parrafo-estilo {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: justify;
+  margin: 0 0 16px 0;
+  color: #2b2b2b;
+}
+
+/* CRÓNICA / AUDIO */
+.titulo-seccion {
+  color: #3b2c17;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.caja-narracion {
+  flex-grow: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.burbuja-texto {
+  padding: 20px;
+  border: 1px solid #a38c62;
+  background-color: rgba(163, 140, 98, 0.05);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.narrador-nombre {
+  color: #3b2c17;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.narrador-texto {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-align: justify;
+  margin: 0;
+}
+
+.emision-fin {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  width: 100%;
+}
+
+/* LISTA DE HITOS */
+.lista-eventos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lista-eventos li {
+  border-bottom: 1px dotted #a38c62;
+  padding-bottom: 15px;
+}
+
+.lista-eventos li.no-linea { border-bottom: none; }
+
+.evento-titulo {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.evento-desc {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+/* MARCO FOTO DERECHA */
+.cuadro-imagen-css {
+  width: 100%;
+  height: 380px;
+  margin-top: 20px;
+  background-color: #ebdcb7;
+  /* Bordes estriados gruesos para simular el marco de la imagen */
+  border: 10px ridge #8b7355; 
+  display: flex;
   justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 15px;
+  box-sizing: border-box;
 }
 
-.pagina-izquierda {
-  border-right: 1px solid rgba(214, 188, 142, 0.35);
-}
-
-.pliegue-central {
-  background: linear-gradient(180deg, rgba(214, 188, 142, 0.25), rgba(214, 188, 142, 0.45));
-  width: 1rem;
-}
-
-.margen-interno {
-  width: 100%;
-  max-width: 540px;
-}
-
-.contenido-pagina {
-  width: 100%;
-}
-
-.animate-fade {
-  animation: fadeIn 0.6s ease both;
-}
-
-.barra-inferior {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1rem;
-  background: linear-gradient(90deg, rgba(214, 188, 142, 0.95), rgba(154, 120, 79, 0.95));
-}
-
-.contenedor-subtitulos > div {
-  transition: all 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fade {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+.cuadro-imagen-css p {
+  color: #1a1a1a;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #d3c29e;

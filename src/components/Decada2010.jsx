@@ -17,7 +17,6 @@ const Decada2010 = () => {
     { autor: "Cierre", texto: "“Porque el conflicto colombiano nunca fue solamente una guerra de balas. También fue una disputa por la memoria, por la verdad y por la manera de entender la historia. Y mientras esas heridas sigan abiertas… esta historia todavía no termina. Hasta aquí esta emisión especial de Notihistórico, el noticiero de la historia. Muy buenas noches, Colombia.”" }
   ];
 
-  // Lógica de sincronización perfecta (onended)
   useEffect(() => {
     if (pliegoActual === 2 && subtituloActivo >= 0 && subtituloActivo < guionCuento.length) {
       audioRef.current.pause();
@@ -28,7 +27,7 @@ const Decada2010 = () => {
         if (subtituloActivo < guionCuento.length - 1) {
           setSubtituloActivo(prev => prev + 1);
         } else {
-          setSubtituloActivo(-1); // Fin de la narración
+          setSubtituloActivo(-1); 
         }
       };
     } else {
@@ -49,119 +48,113 @@ const Decada2010 = () => {
 
   return (
     <div className="fondo-escritorio">
-      <div className="libro-abierto">
+      
+      {/* Tapa verde oscuro del libro (Pasta) */}
+      <div className="pasta-libro-verde">
         
-        <div className="marcador-ribbon">
-          <span style={{ color: '#d6bc8e', display: 'block', marginTop: '10px', textAlign: 'center', fontWeight: 'bold' }}>2010</span>
+        {/* El marcador superior central */}
+        <div className="marcador-ribbon-puro">
+          <span>2010</span>
         </div>
 
-        {/* --- MITAD IZQUIERDA --- */}
-        <div className="pagina pagina-izquierda">
-          <div className="margen-interno">
-            
-            {pliegoActual === 1 ? (
-              <div className="contenido-pagina animate-fade">
-                <h1 style={{ fontFamily: 'serif', fontSize: '2.5rem', color: '#1a2f4c' }}>
-                  Década del 2010: El Juego de Espejos
-                </h1>
-                <h3 style={{ color: '#8b7355', borderBottom: '1px solid #8b7355', paddingBottom: '10px' }}>
-                  Un Cambio de Rumbo
-                </h3>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginTop: '20px' }}>
-                  Colombia entra a la década de 2010 cargando décadas de guerra. Sin embargo, en este periodo el conflicto ya no se veía igual.
-                </p>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#333' }}>
-                  Las discusiones se trasladaron de la selva a los escenarios políticos y digitales: el Congreso, las redes sociales y las mesas familiares se convirtieron en los nuevos campos de batalla por la verdad y la memoria.
-                </p>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#333' }}>
-                  Mientras unos exigían justicia, otros hablaban de reconciliación. El país comenzó a dividirse no solo por las armas, sino por la interpretación de su propia historia.
-                </p>
-              </div>
-            ) : (
-              /* --- PÁGINA 2: NARRACIÓN ESTILO SLIDESHOW --- */
-              <div className="contenido-pagina" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <h2 style={{ fontFamily: 'serif', color: '#1a2f4c', marginBottom: '20px' }}>
-                  Crónica de una Nación
-                </h2>
-                
-                <div style={{ minHeight: '350px', display: 'flex', alignItems: 'center' }}>
-                  {subtituloActivo !== -1 ? (
-                    <div key={subtituloActivo} className="animate-fade" style={{ padding: '20px', borderLeft: '5px solid #d6bc8e', backgroundColor: 'rgba(26, 47, 76, 0.05)', borderRadius: '4px' }}>
-                      <strong style={{ color: '#d6bc8e', display: 'block', marginBottom: '10px', fontSize: '1.2rem' }}>
-                        {guionCuento[subtituloActivo].autor}
-                      </strong>
-                      <p style={{ fontSize: '1.3rem', lineHeight: '1.6', color: '#1a2f4c' }}>
-                        {guionCuento[subtituloActivo].texto}
-                      </p>
-                    </div>
-                  ) : (
-                    <p style={{ fontStyle: 'italic', color: '#aaa' }}>La emisión ha finalizado.</p>
-                  )}
+        {/* --- PÁGINA IZQUIERDA --- */}
+        <div className="hoja-libro hoja-izquierda">
+          {/* El marco dorado elegante construido con CSS */}
+          <div className="marco-dorado-css marco-izquierdo">
+            <div className="contenido-texto-libro">
+              
+              {pliegoActual === 1 ? (
+                <div className="animate-fade">
+                  <h1 className="titulo-principal">DÉCADA DEL 2010</h1>
+                  <h2 className="subtitulo-principal">El Juego de Espejos</h2>
+                  <h3 className="tema-principal">Un Cambio de Rumbo</h3>
+                  
+                  <p className="parrafo-estilo">
+                    Colombia entra a la década de 2010 cargando décadas de guerra. Sin embargo, en este periodo el conflicto ya no se veía igual.
+                  </p>
+                  <p className="parrafo-estilo">
+                    Las discusiones se trasladaron de la selva a los escenarios políticos y digitales: el Congreso, las redes sociales y las mesas familiares se convirtieron en los nuevos campos de batalla por la verdad y la memoria.
+                  </p>
+                  <p className="parrafo-estilo">
+                    Mientras unos exigían justicia, otros hablaban de reconciliación. El país comenzó a dividirse no solo por las armas, sino por la interpretación de su propia historia.
+                  </p>
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="pliegue-central"></div>
-
-        {/* --- MITAD DERECHA --- */}
-        <div className="pagina pagina-derecha">
-          <div className="margen-interno">
-            
-            {pliegoActual === 1 ? (
-              <div className="contenido-pagina animate-fade" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <h2 style={{ fontFamily: 'serif', color: '#1a2f4c', textAlign: 'center', marginBottom: '30px' }}>
-                  Hitos Clave
-                </h2>
-                
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '25px' }}>
-                  <li style={{ borderBottom: '1px dashed #d6bc8e', paddingBottom: '15px' }}>
-                    <strong style={{ fontSize: '1.2rem', color: '#1a2f4c' }}>2011 - Ley de Víctimas</strong>
-                    <p style={{ margin: '5px 0 0 0', color: '#555' }}>El Estado reconoce oficialmente a las víctimas. Ya no son solo cifras, tienen nombres y memorias.</p>
-                  </li>
-                  <li style={{ borderBottom: '1px dashed #d6bc8e', paddingBottom: '15px' }}>
-                    <strong style={{ fontSize: '1.2rem', color: '#1a2f4c' }}>2012 - Diálogos de La Habana</strong>
-                    <p style={{ margin: '5px 0 0 0', color: '#555' }}>Comienzan conversaciones formales con la guerrilla para buscar una salida política.</p>
-                  </li>
-                  <li style={{ borderBottom: '1px dashed #d6bc8e', paddingBottom: '15px' }}>
-                    <strong style={{ fontSize: '1.2rem', color: '#1a2f4c' }}>2016 - Acuerdo y Plebiscito</strong>
-                    <p style={{ margin: '5px 0 0 0', color: '#555' }}>Firma del acuerdo y sorpresiva victoria del "NO" en las urnas, demostrando la fractura social.</p>
-                  </li>
-                  <li style={{ borderBottom: '1px dashed #d6bc8e', paddingBottom: '15px' }}>
-                    <strong style={{ fontSize: '1.2rem', color: '#1a2f4c' }}>2017 - Dejación de Armas</strong>
-                    <p style={{ margin: '5px 0 0 0', color: '#555' }}>Entrega histórica de fusiles a la misión verificadora de la ONU.</p>
-                  </li>
-                </ul>
-
-                <button 
-                  onClick={() => setPliegoActual(2)}
-                  style={{ alignSelf: 'flex-end', padding: '10px 20px', backgroundColor: '#1a2f4c', color: '#f4ecd8', border: 'none', borderRadius: '4px', cursor: 'pointer', fontFamily: 'serif', fontSize: '1.1rem' }}
-                >
-                  Siguiente Página →
-                </button>
-              </div>
-            ) : (
-              <div className="contenido-pagina animate-fade" style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ width: '100%', height: '400px', border: '3px dashed #d6bc8e', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#8b7355', backgroundColor: 'rgba(214, 188, 142, 0.1)', borderRadius: '8px' }}>
-                    <p>Espacio libre para imágenes ilustrativas</p>
+              ) : (
+                <div className="animate-fade layout-col layout-center">
+                  <h2 className="titulo-seccion">Crónica de una Nación</h2>
+                  
+                  <div className="caja-narracion">
+                    {subtituloActivo !== -1 ? (
+                      <div key={subtituloActivo} className="burbuja-texto animate-fade">
+                        <strong className="narrador-nombre">
+                          {guionCuento[subtituloActivo].autor}
+                        </strong>
+                        <p className="narrador-texto">
+                          {guionCuento[subtituloActivo].texto}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="emision-fin">La emisión ha finalizado.</p>
+                    )}
                   </div>
                 </div>
+              )}
 
-                <button 
-                  onClick={() => setPliegoActual(1)}
-                  style={{ alignSelf: 'flex-start', padding: '10px 20px', backgroundColor: 'transparent', color: '#1a2f4c', border: '1px solid #1a2f4c', borderRadius: '4px', cursor: 'pointer', fontFamily: 'serif', fontSize: '1.1rem' }}
-                >
-                  ← Volver
-                </button>
-              </div>
-            )}
-
+            </div>
           </div>
         </div>
 
-        <div className="barra-inferior"></div>
+        {/* Lomo central hundido */}
+        <div className="lomo-central"></div>
+
+        {/* --- PÁGINA DERECHA --- */}
+        <div className="hoja-libro hoja-derecha">
+          <div className="marco-dorado-css marco-derecho">
+            <div className="contenido-texto-libro">
+              
+              {pliegoActual === 1 ? (
+                <div className="animate-fade layout-col space-between">
+                  <h2 className="titulo-seccion">HITOS CLAVE</h2>
+                  
+                  <ul className="lista-eventos">
+                    <li>
+                      <strong className="evento-titulo">2011: Ley de Víctimas</strong>
+                      <p className="evento-desc">El Estado reconoce oficialmente a las víctimas. Ya no son solo cifras, tienen nombres y memorias.</p>
+                    </li>
+                    <li>
+                      <strong className="evento-titulo">2012: Inicio Diálogos</strong>
+                      <p className="evento-desc">Comienzan conversaciones formales con la guerrilla para buscar una salida política.</p>
+                    </li>
+                    <li>
+                      <strong className="evento-titulo">2016: Plebiscito (El Veredicto)</strong>
+                      <p className="evento-desc">Firma del acuerdo y sorpresiva victoria del "NO" en las urnas, demostrando la fractura social.</p>
+                    </li>
+                    <li className="no-linea">
+                      <strong className="evento-titulo">2017: Entrega de Armas</strong>
+                      <p className="evento-desc">Entrega histórica de fusiles a la misión verificadora de la ONU.</p>
+                    </li>
+                  </ul>
+
+                  <button className="boton-libro" onClick={() => setPliegoActual(2)}>
+                    SIGUIENTE PÁGINA →
+                  </button>
+                </div>
+              ) : (
+                <div className="animate-fade layout-col space-between">
+                  <div className="cuadro-imagen-css">
+                    <p>ESPACIO PARA IMÁGENES</p>
+                  </div>
+
+                  <button className="boton-libro btn-volver" onClick={() => setPliegoActual(1)}>
+                    ← VOLVER
+                  </button>
+                </div>
+              )}
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
