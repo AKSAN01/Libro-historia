@@ -1,0 +1,737 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DECADE90S.CSS — Estilos del Capítulo 4: Los 90s
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── ROOT ─────────────────────────────────────────────────────────── */
+/* FIX: height fijo en 100vh, sin padding que desborde el viewport    */
+.d90-root {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--soft-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── LIBRO ────────────────────────────────────────────────────────── */
+/* FIX: ocupa exactamente el espacio disponible dentro del root       */
+.d90-book {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  background-color: var(--leather-brown);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: var(--book-shadow);
+  gap: 3px;
+  box-sizing: border-box;
+}
+
+/* ── PÁGINAS ──────────────────────────────────────────────────────── */
+/* FIX: overflow hidden en la página, el scroll queda solo donde se   */
+/* necesita (dentro de .d90-page-content)                             */
+.d90-page {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--aged-paper);
+  background-image: var(--paper-texture);
+  box-shadow: var(--page-shadow);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* FIX: las páginas NO hacen scroll en sí mismas; el scroll queda     */
+/* solo en los sub-contenedores que lo necesitan (guión, hitos)       */
+.d90-page-content {
+  flex: 1;
+  min-height: 0;
+  padding: 24px 28px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Sombras de lomo */
+.d90-spine-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+.d90-spine-shadow--left {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.2) 0%, transparent 100%);
+}
+.d90-spine-shadow--right {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 100%);
+}
+
+/* ── ENCABEZADO ───────────────────────────────────────────────────── */
+.d90-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.d90-back-link {
+  font-family: var(--font-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--petrol-blue);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+  transition: opacity 0.2s;
+}
+.d90-back-link:hover { opacity: 0.7; }
+
+.d90-chapter-label {
+  font-family: var(--font-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--aged-gold);
+}
+
+.d90-chapter-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--soft-ink);
+  line-height: 1;
+  margin: 0;
+}
+
+.d90-chapter-subtitle {
+  font-family: var(--font-subtitle);
+  font-size: 1rem;
+  color: var(--leather-brown);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EL TELEVISOR
+   FIX: flex: 1 + min-height: 0 para que tome el espacio sobrante
+   sin desbordarse; max-width más generoso
+   ═══════════════════════════════════════════════════════════════════ */
+.d90-tv-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  min-height: 0;
+}
+
+.d90-tv {
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Marco externo — plástico beige envejecido */
+.d90-tv-frame {
+  background: linear-gradient(145deg, #d4c4a0, #b8a882, #c8b890, #a89a70);
+  border-radius: 16px 16px 12px 12px;
+  padding: 14px 14px 6px;
+  box-shadow:
+    inset 0 3px 8px rgba(255,255,255,0.4),
+    inset 0 -4px 10px rgba(0,0,0,0.3),
+    4px 8px 20px rgba(0,0,0,0.5),
+    -2px -2px 6px rgba(255,255,255,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.d90-tv-frame::before {
+  content: 'NOTICOLOR';
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  font-family: var(--font-text);
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(90, 62, 43, 0.5);
+}
+
+/* ── PANTALLA ─────────────────────────────────────────────────────── */
+.d90-tv-screen-wrap {
+  position: relative;
+}
+
+.d90-tv-screen {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.8),
+    inset 0 0 8px rgba(0,0,0,0.9),
+    0 2px 8px rgba(0,0,0,0.6);
+  border: 3px solid #1a1a1a;
+}
+
+.d90-tv-screen--static {
+  animation: d90-staticFlicker 0.08s infinite;
+}
+@keyframes d90-staticFlicker {
+  0%   { filter: contrast(2) brightness(1.5) saturate(0); }
+  25%  { filter: contrast(1) brightness(0.5) saturate(0) invert(1); }
+  50%  { filter: contrast(3) brightness(2) saturate(0); }
+  75%  { filter: contrast(1.5) brightness(0.8) saturate(0) invert(0.5); }
+  100% { filter: contrast(2) brightness(1.5) saturate(0); }
+}
+
+.d90-tv-off {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+}
+.d90-tv-off-dot {
+  width: 6px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.05);
+}
+.d90-tv-off-text {
+  font-family: var(--font-text);
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.12);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.d90-tv-static {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.d90-static-canvas {
+  width: 100%;
+  height: 100%;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: cover;
+  animation: d90-staticScroll 0.05s steps(1) infinite;
+  opacity: 0.8;
+}
+@keyframes d90-staticScroll {
+  0%   { background-position: 0 0; }
+  20%  { background-position: -10px 5px; }
+  40%  { background-position: 5px -10px; }
+  60%  { background-position: -5px 10px; }
+  80%  { background-position: 10px -5px; }
+  100% { background-position: 0 0; }
+}
+
+.d90-tv-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.d90-crt-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.18) 2px,
+    rgba(0,0,0,0.18) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.d90-crt-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 6;
+  border-radius: 8px;
+}
+
+.d90-img-dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+.d90-img-dot {
+  width: 5px;
+  height: 5px;
+  background: rgba(90, 62, 43, 0.3);
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.d90-img-dot--active {
+  background: var(--leather-brown);
+}
+
+/* ── CONTROLES DEL TV ─────────────────────────────────────────────── */
+.d90-tv-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 4px;
+  gap: 8px;
+}
+
+.d90-knobs { display: flex; gap: 10px; }
+.d90-knob {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.d90-knob-label {
+  font-family: var(--font-text);
+  font-size: 0.45rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(90,62,43,0.6);
+}
+.d90-knob-dial {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8a7a5a, #5a4a2a, #7a6a4a);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.2),
+    inset 0 -2px 4px rgba(0,0,0,0.4),
+    0 2px 4px rgba(0,0,0,0.4);
+  position: relative;
+}
+.d90-knob-dial::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 1px;
+}
+
+.d90-channel-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.d90-channel-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(145deg, #6a5a3a, #4a3a1a);
+  color: var(--aged-gold);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,0.15),
+    inset 0 -2px 3px rgba(0,0,0,0.4),
+    0 2px 4px rgba(0,0,0,0.4);
+  transition: all 0.15s;
+}
+.d90-channel-btn:hover:not(:disabled) {
+  background: linear-gradient(145deg, #7a6a4a, #5a4a2a);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.d90-channel-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+}
+.d90-channel-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.d90-channel-indicator {
+  font-family: var(--font-text);
+  font-size: 0.6rem;
+  color: rgba(90,62,43,0.6);
+  min-width: 30px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.d90-power-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.d90-power-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  transition: all 0.3s;
+}
+.d90-power-led--on {
+  background: #00cc44;
+  box-shadow: 0 0 6px #00cc44, 0 0 12px rgba(0, 204, 68, 0.4);
+}
+.d90-power-label {
+  font-family: var(--font-text);
+  font-size: 0.42rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(90,62,43,0.5);
+}
+
+.d90-tv-base {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 0 20px;
+}
+.d90-tv-leg {
+  width: 20px;
+  height: 10px;
+  background: linear-gradient(to bottom, #a08060, #7a6040);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+/* ── RECUADRO DATOS CLAVE ─────────────────────────────────────────── */
+/* FIX: quitado margin-top: auto para que no empuje; altura natural   */
+/* con más espacio para el texto                                       */
+.d90-fact-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(232, 220, 200, 0.7);
+  border: 1px solid rgba(197, 155, 87, 0.5);
+  border-left: 4px solid var(--aged-gold);
+  border-radius: 4px;
+  padding: 14px 16px;
+  flex-shrink: 0;
+}
+.d90-fact-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.d90-fact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.d90-fact-label {
+  font-family: var(--font-text);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--aged-gold);
+}
+.d90-fact-text {
+  font-family: var(--font-subtitle);
+  font-size: 1rem;
+  color: var(--leather-brown);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PÁGINA DERECHA
+   ═══════════════════════════════════════════════════════════════════ */
+.d90-page--right .d90-page-content {
+  gap: 10px;
+}
+
+/* ── VISOR DE GUIÓN ───────────────────────────────────────────────── */
+/* FIX: flex: 0 0 38% fija la altura proporcional; el scroll interno  */
+/* queda solo en .d90-script-body                                      */
+.d90-script-viewer {
+  flex: 0 0 38%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(31, 46, 61, 0.06);
+  border: 1px solid rgba(31, 46, 61, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.d90-script-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: var(--petrol-blue);
+  border-radius: 5px 5px 0 0;
+  flex-shrink: 0;
+}
+.d90-script-icon { font-size: 0.9rem; }
+.d90-script-title {
+  font-family: var(--font-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--aged-paper);
+  flex: 1;
+}
+.d90-script-live {
+  font-family: var(--font-text);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #ff4444;
+  letter-spacing: 0.1em;
+  animation: d90-blink 1.2s ease-in-out infinite;
+}
+@keyframes d90-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* El único scroll legítimo de la página derecha */
+.d90-script-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  min-height: 0;
+}
+
+.d90-script-empty {
+  height: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(28,26,23,0.3);
+  text-align: center;
+}
+.d90-script-empty-icon { font-size: 1.8rem; opacity: 0.4; }
+.d90-script-empty p {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.d90-script-headline {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  color: var(--petrol-blue);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.d90-script-para {
+  font-family: var(--font-subtitle);
+  font-size: 0.86rem;
+  color: var(--soft-ink);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+.d90-script-para--header {
+  font-family: var(--font-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--aged-gold);
+  margin-bottom: 10px;
+}
+
+/* ── PARRILLA DE HITOS ────────────────────────────────────────────── */
+.d90-hitos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;          /* no comprime; altura natural de sus botones */
+}
+
+/* Página izquierda: 3 botones compactos de altura fija */
+.d90-hitos-list--left .d90-hito-wrapper {
+  height: 54px;
+  flex: none;
+}
+.d90-hitos-list--left .d90-hito-btn {
+  height: 54px;
+}
+.d90-hitos-list--left .d90-hito-num  { font-size: 1.05rem; }
+.d90-hitos-list--left .d90-hito-year { font-size: 0.58rem; }
+.d90-hitos-list--left .d90-hito-title { font-size: 0.86rem; }
+
+/* Página derecha: 4 botones de altura fija */
+.d90-hito-wrapper {
+  position: relative;
+  height: 58px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.d90-hito-btn {
+  height: 58px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(90, 62, 43, 0.2);
+  border-left: 4px solid var(--hito-color, var(--petrol-blue));
+  border-radius: 4px;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.d90-hito-btn:hover {
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.d90-hito-btn--active {
+  background: rgba(255,255,255,0.7);
+  border-color: var(--hito-color);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.d90-hito-num {
+  font-family: var(--font-subtitle);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--hito-color, var(--petrol-blue));
+  opacity: 0.7;
+  flex-shrink: 0;
+  min-width: 26px;
+}
+
+.d90-hito-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.d90-hito-year {
+  font-family: var(--font-text);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--aged-gold);
+}
+
+.d90-hito-title {
+  font-family: var(--font-subtitle);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--soft-ink);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.d90-hito-state { flex-shrink: 0; }
+
+.d90-play-indicator {
+  font-family: var(--font-text);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #008833;
+  letter-spacing: 0.08em;
+  animation: d90-blink 1.5s ease-in-out infinite;
+}
+.d90-pause-indicator {
+  font-family: var(--font-text);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--leather-brown);
+  letter-spacing: 0.08em;
+}
+.d90-idle-indicator {
+  font-size: 0.7rem;
+  color: rgba(90,62,43,0.3);
+}
+
+/* Tooltip eliminado */
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .d90-root {
+    padding: 8px;
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+  .d90-book {
+    flex-direction: column;
+    height: auto;
+  }
+  .d90-page {
+    overflow: visible;
+  }
+  .d90-page-content {
+    overflow: visible;
+    padding: 18px 16px;
+  }
+  .d90-chapter-title { font-size: 1.6rem; }
+  .d90-tv { max-width: 300px; }
+  .d90-hito-tooltip { display: none; }
+  .d90-hitos-list {
+    overflow: visible;
+  }
+  .d90-hito-wrapper,
+  .d90-hitos-list--left .d90-hito-wrapper {
+    height: auto;
+  }
+  .d90-hito-btn,
+  .d90-hitos-list--left .d90-hito-btn {
+    height: auto;
+    padding: 10px 12px;
+    min-height: 48px;
+  }
+  .d90-script-viewer {
+    flex: none;
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .d90-chapter-title { font-size: 1.3rem; }
+  .d90-tv { max-width: 240px; }
+}
