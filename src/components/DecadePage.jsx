@@ -5,6 +5,7 @@ import { decades } from '../data/decades';
 import { BookLayout } from './BookLayout';
 import { Placeholder } from './Placeholder';
 import { Decade90s } from './Decade90s'; // ← El componente personalizado del Capítulo 4
+import { Decade60s } from './Decade60s';
 
 export const DecadePage = () => {
   const { tag } = useParams();
@@ -12,6 +13,9 @@ export const DecadePage = () => {
   // ─── Ruta especial para los 90s ─────────────────────────────────
   if (tag === '90s') {
     return <Decade90s />;
+  }
+  if (tag === '60s'){
+    return <Decade60s/>
   }
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
