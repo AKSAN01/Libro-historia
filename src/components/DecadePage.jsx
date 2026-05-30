@@ -5,6 +5,7 @@ import { decades } from '../data/decades';
 import { BookLayout } from './BookLayout';
 import { Placeholder } from './Placeholder';
 import { Decade90s } from './Decade90s'; // ← El componente personalizado del Capítulo 4
+import { Decade80s } from './Decade80s';
 import { Decade60s } from './Decade60s';
 import { Decade70s } from './Decade70s.jsx';
 
@@ -23,6 +24,10 @@ export const DecadePage = () => {
         </div>
       </div>
     );
+  }
+
+  if (tag === '80s') {
+    return <Decade80s />;
   }
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
