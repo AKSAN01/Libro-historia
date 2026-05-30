@@ -1,132 +1,106 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import './Decade90s.css';
+import './Decade70s.css';
 
 // ── Imports de audio ──────────────────────────────────────────────────────────
-import audio1 from '../assets/90s/audio/hito1.mp3';
-import audio2 from '../assets/90s/audio/hito2.mp3';
-import audio3 from '../assets/90s/audio/hito3.mp3';
-import audio4 from '../assets/90s/audio/hito4.mp3';
-import audio5 from '../assets/90s/audio/hito5.mp3';
-import audio6 from '../assets/90s/audio/hito6.mp3';
-import audio7 from '../assets/90s/audio/hito7.mp3';
+import audio1 from '../assets/70s/audio/70parte1.mp3';
+import audio2 from '../assets/70s/audio/70parte2.mp3';
+import audio3 from '../assets/70s/audio/70parte3.mp3';
+import audio4 from '../assets/70s/audio/70parte4.mp3';
+import audio5 from '../assets/70s/audio/70parte5.mp3';
 
 // ── Imports de imágenes ───────────────────────────────────────────────────────
-import img1_1 from '../assets/90s/imagenes/hito1_foto1.png';
-import img1_2 from '../assets/90s/imagenes/hito1_foto2.png';
-import img1_3 from '../assets/90s/imagenes/hito1_foto3.png';
-import img2_1 from '../assets/90s/imagenes/hito2_foto1.png';
-import img2_2 from '../assets/90s/imagenes/hito2_foto2.png';
-import img2_3 from '../assets/90s/imagenes/hito2_foto3.png';
-import img3_1 from '../assets/90s/imagenes/hito3_foto1.png';
-import img3_2 from '../assets/90s/imagenes/hito3_foto2.png';
-import img4_1 from '../assets/90s/imagenes/hito4_foto1.png';
-import img4_2 from '../assets/90s/imagenes/hito4_foto2.png';
-import img5_1 from '../assets/90s/imagenes/hito5_foto1.png';
-import img5_2 from '../assets/90s/imagenes/hito5_foto2.png';
-import img6_1 from '../assets/90s/imagenes/hito6_foto1.png';
-import img6_2 from '../assets/90s/imagenes/hito6_foto2.png';
-import img7_1 from '../assets/90s/imagenes/hito7_foto1.png';
-import img7_2 from '../assets/90s/imagenes/hito7_foto2.png';
-import img7_3 from '../assets/90s/imagenes/hito7_foto3.png';
+import img1_1 from '../assets/70s/imagenes/audio11.png';
+import img1_2 from '../assets/70s/imagenes/audio12.png';
+import img1_3 from '../assets/70s/imagenes/audio13.png';
+import img2_1 from '../assets/70s/imagenes/audio21.png';
+import img2_2 from '../assets/70s/imagenes/audio22.png';
+import img2_3 from '../assets/70s/imagenes/audio23.png';
+import img3_1 from '../assets/70s/imagenes/audio31.png';
+import img3_2 from '../assets/70s/imagenes/audio32.png';
+import img3_3 from '../assets/70s/imagenes/audio33.png';
+import img4_1 from '../assets/70s/imagenes/audio41.png';
+import img4_2 from '../assets/70s/imagenes/audio42.png';
+import img4_3 from '../assets/70s/imagenes/audio43.png';
+import img5_1 from '../assets/70s/imagenes/audio51.png';
+import img5_2 from '../assets/70s/imagenes/audio52.png';
+import img5_3 from '../assets/70s/imagenes/audio53.png';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATOS — idénticos al original
 // ─────────────────────────────────────────────────────────────────────────────
 const HITOS_LEFT = [
   {
-    id: 1, year: '1990–1993', title: 'Violencia del Narcotráfico',
-    shortDesc: 'Atentados, asesinatos y enfrentamientos sacuden al país.',
+    id: 1, year: '1970', title: 'Elecciones del 19 de Abril',
+    shortDesc: 'Dudas, inconformidad y sospechas de fraude electoral sacuden al país.',
     guion:
       'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Muy buenas noches, Colombia. Somos Notihistórico, el noticiero de la historia, e iniciamos esta emisión con noticias preocupantes sobre la creciente violencia que afecta al país.\n\n' +
-      'Continúan los atentados, asesinatos y enfrentamientos relacionados con el narcotráfico, mientras aumentan las tensiones entre el Estado y grupos criminales liderados por reconocidos capos de la droga.\n\n' +
-      'La preocupación ciudadana crece ante una situación de orden público cada vez más compleja. Desde la redacción de Notihistórico, seguiremos informando.',
+      'Muy buenas noches, Colombia. Bienvenidos a Notihistórico, el noticiero de la historia. Abrimos esta emisión especial viajando al año 1970, una época en la que el país intentaba recuperar estabilidad después de años de violencia política entre liberales y conservadores.\n\n' +
+      'Esta noche, la atención nacional se concentra en las elecciones presidenciales del 19 de abril. Durante horas, millones de colombianos permanecen atentos a la radio siguiendo el conteo de votos. Todo parecía indicar una posible victoria del general Gustavo Rojas Pinilla.\n\n' +
+      'Sin embargo, con el avance de la madrugada, los resultados comienzan a cambiar. Finalmente, el candidato oficialista Misael Pastrana Borrero es declarado ganador. El anuncio provoca dudas, inconformidad y fuertes sospechas de fraude electoral.\n\n' +
+      'Para muchos ciudadanos, aquella noche dejó la sensación de que el sistema político colombiano atravesaba una profunda crisis de legitimidad. Y mientras crecía la desconfianza… también comenzaban a surgir nuevas ideas de confrontación contra el Estado.',
     images: [img1_1, img1_2, img1_3], audioSrc: audio1,
-    datoClave: '1990–1993 · Cartel de Medellín · Narcoterrorismo · Crisis de orden público nacional',
-    fichaLineas: ['Período: 1990 – 1993','Actor: Cartel de Medellín','Tipo: Narcoterrorismo','Afectados: Civiles, jueces, políticos','Contexto: Crisis de orden público'],
+    datoClave: '19 de abril de 1970 · Misael Pastrana Borrero · Gustavo Rojas Pinilla · Crisis de legitimidad',
+    fichaLineas: ['Fecha: 19 abril 1970','Ganador oficial: Pastrana Borrero','Rival: Gral. Rojas Pinilla','Contexto: Frente Nacional','Resultado: Sospechas de fraude'],
     color: '#7a1a1a',
   },
   {
-    id: 2, year: '1991', title: 'Constitución Política de 1991',
-    shortDesc: 'Reforma política que amplía derechos y moderniza el Estado.',
+    id: 2, year: '1970–1974', title: 'Surgimiento del M-19',
+    shortDesc: 'Un nuevo grupo insurgente irrumpe con acciones simbólicas y mediáticas.',
     guion:
       'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'En noticias nacionales, el gobierno del presidente César Gaviria promueve una nueva Constitución para el país. Esta reforma busca fortalecer la democracia, ampliar los derechos ciudadanos y modernizar las instituciones del Estado.\n\n' +
-      'Sin embargo, algunas decisiones generan debate, especialmente aquellas relacionadas con la extradición y su posible impacto en la lucha contra el narcotráfico.\n\n' +
-      'Colombia estrena un pacto social que reconoce por primera vez su diversidad étnica, crea la acción de tutela y establece la Corte Constitucional como guardiana de los derechos fundamentales.',
+      'En noticias nacionales, empieza a llamar la atención un nuevo movimiento insurgente: el Movimiento 19 de Abril, más conocido como el M-19. A diferencia de otras guerrillas activas en el país, este grupo demuestra rápidamente interés por las acciones simbólicas y mediáticas.\n\n' +
+      'Incluso antes de anunciar oficialmente su existencia, comienzan a aparecer mensajes extraños en distintos periódicos colombianos. "¿Falta de energía? Espere… M-19." Durante varios días, la población intenta entender el significado de aquella campaña.\n\n' +
+      'Poco después, el grupo hace pública su existencia y empieza a protagonizar hechos que ocupan titulares nacionales. Año 1974. Un comando del M-19 ingresa a la Quinta de Bolívar, en Bogotá, y roba la espada de Simón Bolívar.\n\n' +
+      'La noticia produce conmoción inmediata en todo el país. Más allá del valor histórico del objeto, la espada representaba uno de los símbolos políticos más importantes de América Latina. Junto al robo aparece un mensaje que rápidamente recorre Colombia: "Bolívar, tu espada vuelve a la lucha." Con este episodio, el M-19 logra convertirse en uno de los actores más visibles del panorama político y armado nacional.',
     images: [img2_1, img2_2, img2_3], audioSrc: audio2,
-    datoClave: '4 de julio de 1991 · Gobierno Gaviria · 380 artículos · Reemplaza la Constitución de 1886',
-    fichaLineas: ['Fecha: 4 julio 1991','Promotor: Presidente Gaviria','Artículos: 380','Reemplaza: Constitución 1886','Nuevo: Acción de tutela'],
+    datoClave: '1970–1974 · M-19 · Robo espada de Bolívar · Quinta de Bolívar, Bogotá',
+    fichaLineas: ['Período: 1970 – 1974','Actor: M-19','Hecho: Robo espada de Bolívar','Lugar: Quinta de Bolívar','Mensaje: Acción simbólica'],
     color: '#1a7a3c',
   },
   {
-    id: 3, year: '1991', title: 'Entrega de Pablo Escobar',
-    shortDesc: 'El capo más buscado del mundo se entrega bajo sus propias condiciones.',
+    id: 3, year: '1978–1979', title: 'Estatuto de Seguridad y Tensión Social',
+    shortDesc: 'El gobierno endurece el orden público y crecen las denuncias de abusos.',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'Atención, última hora. Pablo Emilio Escobar Gaviria se entrega oficialmente a las autoridades colombianas.\n\n' +
-      'La decisión ocurre en medio de los recientes cambios constitucionales y bajo un acuerdo que le permite permanecer en un centro de reclusión especial conocido como "La Catedral", construido bajo sus propias condiciones.\n\n' +
-      'El país permanece atento al rumbo de este caso. Los analistas advierten: el capo negoció sus términos, eligió su guardia y mantiene el control de su organización desde adentro.',
-    images: [img3_1, img3_2], audioSrc: audio3,
-    datoClave: '1991 · La Catedral, Envigado · Decreto de sometimiento a la justicia · Gobierno Gaviria',
-    fichaLineas: ['Fecha: 19 junio 1991','Lugar: La Catedral, Envigado','Marco: Decreto sometimiento','Gobierno: Gaviria','Nota: Construida por él mismo'],
+      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
+      'Y mientras aumentaban las acciones insurgentes, el gobierno nacional respondía fortaleciendo las medidas de seguridad. Con la llegada de Julio César Turbay Ayala a la presidencia, se implementa el llamado Estatuto de Seguridad.\n\n' +
+      'Según el gobierno, esta estrategia buscaba combatir a las organizaciones armadas y recuperar el control del orden público. Sin embargo, distintos sectores comienzan a expresar preocupación por posibles abusos de autoridad.\n\n' +
+      'Organizaciones sociales, estudiantes y líderes políticos denuncian detenciones arbitrarias, persecuciones y restricciones a ciertas libertades civiles. En varias universidades del país empieza a sentirse un ambiente de vigilancia permanente.\n\n' +
+      'La tensión política aumenta. La desconfianza crece. Y poco a poco, Colombia comienza a entrar en una etapa marcada por la polarización y el miedo. Las ciudades ya no parecían completamente ajenas al conflicto armado.',
+    images: [img3_1, img3_2, img3_3], audioSrc: audio3,
+    datoClave: '1978–1979 · Julio César Turbay Ayala · Estatuto de Seguridad · Denuncias de abusos',
+    fichaLineas: ['Período: 1978 – 1979','Presidente: Turbay Ayala','Medida: Estatuto de Seguridad','Crítica: Detenciones arbitrarias','Contexto: Polarización social'],
     color: '#8B3A0A',
   },
 ];
 
 const HITOS_RIGHT = [
   {
-    id: 4, year: '1992', title: 'Fuga de Pablo Escobar',
-    shortDesc: 'El capo escapa de La Catedral cuando el gobierno intenta trasladarlo.',
+    id: 4, year: '1978–1979', title: 'Robo de Armas del Cantón Norte',
+    shortDesc: 'El M-19 roba más de cinco mil armas del Ejército colombiano en Bogotá.',
     guion:
       'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'Interrumpimos nuestra programación con información de última hora. Se confirma la fuga de Pablo Escobar de la prisión conocida como La Catedral.\n\n' +
-      'Autoridades adelantan operativos de búsqueda, mientras aumenta la preocupación por el posible regreso de episodios de violencia asociados al narcotráfico.\n\n' +
-      'El Bloque de Búsqueda, apoyado por la DEA y el Gobierno de Estados Unidos, inicia las operaciones más intensas de la historia reciente del país.',
-    images: [img4_1, img4_2], audioSrc: audio4,
-    datoClave: '22 de julio de 1992 · La Catedral, Envigado · Inicio del Bloque de Búsqueda',
-    fichaLineas: ['Fecha: 22 julio 1992','Lugar: La Catedral, Envigado','Respuesta: Bloque de Búsqueda','Apoyo: DEA / EE.UU.','Impacto: Crisis credibilidad gobierno'],
+      'Interrumpimos esta emisión con información de última hora. 31 de diciembre de 1978. Mientras miles de colombianos celebraban la llegada del nuevo año, el M-19 ejecutaba una de las operaciones más impactantes de la década.\n\n' +
+      'Durante semanas, miembros de la organización construyeron un túnel subterráneo que conducía directamente al Cantón Norte, una instalación militar del Ejército colombiano en Bogotá. La operación termina con el robo de más de cinco mil armas.\n\n' +
+      'El hecho provoca una fuerte crisis de seguridad y deja en evidencia la capacidad operativa del grupo insurgente. Pero más allá de las armas desaparecidas, el episodio deja una preocupación aún mayor entre la población: la sensación de que el conflicto armado comenzaba a infiltrarse en el centro mismo de las instituciones del país.',
+    images: [img4_1, img4_2, img4_3], audioSrc: audio4,
+    datoClave: '31 de diciembre de 1978 · M-19 · Cantón Norte, Bogotá · Más de 5.000 armas robadas',
+    fichaLineas: ['Fecha: 31 dic 1978','Actor: M-19','Lugar: Cantón Norte, Bogotá','Método: Túnel subterráneo','Botín: +5.000 armas'],
     color: '#5A0000',
   },
   {
-    id: 5, year: '1993', title: 'Muerte de Pablo Escobar',
-    shortDesc: 'El Bloque de Búsqueda abate al capo en Los Olivos, Medellín.',
-    guion:
-      'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'En noticias de última hora, autoridades confirman la muerte de Pablo Emilio Escobar Gaviria en el barrio Los Olivos, en Medellín, tras un operativo del Bloque de Búsqueda.\n\n' +
-      'Diversos sectores esperan que este hecho represente el inicio de una etapa de mayor tranquilidad para el país, aunque persisten preocupaciones sobre el futuro del narcotráfico.\n\n' +
-      'Dieciséis meses duró la cacería más intensa de la historia colombiana.',
-    images: [img5_1, img5_2], audioSrc: audio5,
-    datoClave: '2 de diciembre de 1993 · Los Olivos, Medellín · Bloque de Búsqueda · Fin del Cartel de Medellín',
-    fichaLineas: ['Fecha: 2 dic 1993','Lugar: Los Olivos, Medellín','Operativo: Bloque de Búsqueda','Cacería: 16 meses','Resultado: Fin Cartel Medellín'],
-    color: '#7a1a1a',
-  },
-  {
-    id: 6, year: '1998–1999', title: 'Crisis Económica',
-    shortDesc: 'Recesión, desempleo masivo y dificultades para miles de familias.',
+    id: 5, year: '1979', title: 'Fin de la Década: Narcotráfico en Ascenso',
+    shortDesc: 'Colombia cierra los 70 con tensión social y un nuevo fenómeno: el narcotráfico.',
     guion:
       'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Atención colombianos: estos años no han sido los mejores para la economía colombiana, que hoy enfrenta momentos difíciles. El desempleo se agudiza y miles de familias reportan dificultades económicas.\n\n' +
-      'Expertos señalan problemas relacionados con la apertura económica de años anteriores, desequilibrios fiscales y una desaceleración de la economía.\n\n' +
-      'El gobierno hace un llamado a la calma mientras se anuncian nuevas medidas económicas.',
-    images: [img6_1, img6_2], audioSrc: audio6,
-    datoClave: '1998–1999 · Gobierno Pastrana · Crisis fiscal · Desempleo masivo',
-    fichaLineas: ['Período: 1998–1999','Desempleo: +20%','Crisis: Colapso UPAC','Causa: Apertura económica','Gobierno: Pastrana'],
-    color: '#4a3a00',
-  },
-  {
-    id: 7, year: '1999–2000', title: 'Plan Colombia',
-    shortDesc: 'Estrategia antidrogas con apoyo de EE.UU. contra violencia y narcotráfico.',
-    guion:
-      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Última hora: dada la crisis económica y en especial el aumento de cultivos y del mercado del narcotráfico, el gobierno nacional anuncia oficialmente el inicio del Plan Colombia.\n\n' +
-      'Una estrategia que busca fortalecer la seguridad, combatir el narcotráfico y reducir la violencia con apoyo internacional, especialmente de Estados Unidos.\n\n' +
-      'Hasta aquí esta emisión especial. Continuaremos informando sobre los hechos que marcan el rumbo de Colombia. Muy buenas noches.',
-    images: [img7_1, img7_2, img7_3], audioSrc: audio7,
-    datoClave: '1999–2000 · Gobierno Pastrana · Plan Colombia · Apoyo de EE.UU.',
-    fichaLineas: ['Período: 1999–2000','Inversión: USD $7.500M','Aliado: Estados Unidos','Estrategia: Fumigación + militar','Gobierno: Pastrana'],
+      'Así termina la década de 1970 en Colombia. Con una creciente desconfianza hacia la política. Con movimientos insurgentes ganando protagonismo nacional. Y con un Estado que responde mediante políticas de seguridad cada vez más estrictas.\n\n' +
+      'La tensión social continúa acumulándose lentamente. Y mientras el país intenta contener esa fractura interna, un nuevo fenómeno comienza a aparecer silenciosamente en el panorama nacional…\n\n' +
+      'el narcotráfico.\n\n' +
+      'Hasta aquí esta emisión especial de Notihistórico, el noticiero de la historia. Muy buenas noches, Colombia.',
+    images: [img5_1, img5_2, img5_3], audioSrc: audio5,
+    datoClave: '1979 · Cierre de la década · Insurgencia · Inicio del narcotráfico en Colombia',
+    fichaLineas: ['Período: Década de 1970','Crisis: Legitimidad política','Actor: Guerrillas (M-19)','Nuevo fenómeno: Narcotráfico','Proyección: Décadas de conflicto'],
     color: '#1a4a2a',
   },
 ];
@@ -141,7 +115,7 @@ const CassetteDecor = () => (
     <rect x="1" y="1" width="108" height="66" rx="5" fill="#1a1814" stroke="#3a3530" strokeWidth="1.5"/>
     <rect x="8" y="6" width="94" height="38" rx="2" fill="#111" stroke="#2a2520" strokeWidth="1"/>
     <text x="55" y="21" textAnchor="middle" fill="#b8860b" fontSize="6" fontFamily="monospace" fontWeight="bold">NOTIHISTÓRICO</text>
-    <text x="55" y="31" textAnchor="middle" fill="#666" fontSize="4.5" fontFamily="monospace">Colombia 1990–2000</text>
+    <text x="55" y="31" textAnchor="middle" fill="#666" fontSize="4.5" fontFamily="monospace">Colombia 1970–1979</text>
     <circle cx="34" cy="52" r="9" fill="#0a0a0a" stroke="#3a3530" strokeWidth="1.2"/>
     <circle cx="34" cy="52" r="4" fill="#1a1814" stroke="#b8860b" strokeWidth="0.7"/>
     <circle cx="76" cy="52" r="9" fill="#0a0a0a" stroke="#3a3530" strokeWidth="1.2"/>
@@ -177,7 +151,7 @@ const CDDecor = () => (
     </defs>
     <circle cx="32" cy="32" r="5" fill="#ddd" stroke="#aaa" strokeWidth="0.8"/>
     <circle cx="32" cy="32" r="2" fill="#bbb"/>
-    <text x="32" y="26" textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="4" fontFamily="monospace">Interactiva 90s</text>
+    <text x="32" y="26" textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="4" fontFamily="monospace">Interactiva 70s</text>
     <text x="32" y="38" textAnchor="middle" fill="rgba(0,0,0,0.3)" fontSize="3.5" fontFamily="monospace">Data Acústica</text>
   </svg>
 );
@@ -185,7 +159,7 @@ const CDDecor = () => (
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENTE PRINCIPAL
 // ─────────────────────────────────────────────────────────────────────────────
-export const Decade90s = () => {
+export const Decade70s = () => {
   const [activeHito, setActiveHito]   = useState(null);
   const [isPlaying, setIsPlaying]     = useState(false);
   const [imageIndex, setImageIndex]   = useState(0);
@@ -363,9 +337,9 @@ export const Decade90s = () => {
             {/* Encabezado */}
             <div className="d90-header">
               <Link to="/timeline" className="d90-back-link">← Volver a la estantería</Link>
-              <span className="d90-chapter-label">CAPÍTULO 4</span>
-              <h1 className="d90-chapter-title">1990 — 2000</h1>
-              <h2 className="d90-chapter-subtitle">Narcotráfico, constitución y crisis</h2>
+              <span className="d90-chapter-label">CAPÍTULO 3</span>
+              <h1 className="d90-chapter-title">1970 — 1979</h1>
+              <h2 className="d90-chapter-subtitle">Fraude electoral, insurgencia y tensión social</h2>
             </div>
 
             {/* ── TELEVISOR ESTILO 90s ── */}

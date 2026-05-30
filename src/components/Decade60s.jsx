@@ -4,137 +4,121 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Decade90s.css';
 
 // ── Imports de audio ──────────────────────────────────────────────────────────
-import audio1 from '../assets/90s/audio/hito1.mp3';
-import audio2 from '../assets/90s/audio/hito2.mp3';
-import audio3 from '../assets/90s/audio/hito3.mp3';
-import audio4 from '../assets/90s/audio/hito4.mp3';
-import audio5 from '../assets/90s/audio/hito5.mp3';
-import audio6 from '../assets/90s/audio/hito6.mp3';
-import audio7 from '../assets/90s/audio/hito7.mp3';
+import audio1 from '../assets/60s/audio/audio1.mp3';
+import audio2 from '../assets/60s/audio/audio2.mp3';
+import audio3 from '../assets/60s/audio/audio3.mp3';
+import audio4 from '../assets/60s/audio/audio4.mp3';
+import audio5 from '../assets/60s/audio/audio5.mp3';
+import audio6 from '../assets/60s/audio/audio6.mp3';
 
 // ── Imports de imágenes ───────────────────────────────────────────────────────
-import img1_1 from '../assets/90s/imagenes/hito1_foto1.png';
-import img1_2 from '../assets/90s/imagenes/hito1_foto2.png';
-import img1_3 from '../assets/90s/imagenes/hito1_foto3.png';
-import img2_1 from '../assets/90s/imagenes/hito2_foto1.png';
-import img2_2 from '../assets/90s/imagenes/hito2_foto2.png';
-import img2_3 from '../assets/90s/imagenes/hito2_foto3.png';
-import img3_1 from '../assets/90s/imagenes/hito3_foto1.png';
-import img3_2 from '../assets/90s/imagenes/hito3_foto2.png';
-import img4_1 from '../assets/90s/imagenes/hito4_foto1.png';
-import img4_2 from '../assets/90s/imagenes/hito4_foto2.png';
-import img5_1 from '../assets/90s/imagenes/hito5_foto1.png';
-import img5_2 from '../assets/90s/imagenes/hito5_foto2.png';
-import img6_1 from '../assets/90s/imagenes/hito6_foto1.png';
-import img6_2 from '../assets/90s/imagenes/hito6_foto2.png';
-import img7_1 from '../assets/90s/imagenes/hito7_foto1.png';
-import img7_2 from '../assets/90s/imagenes/hito7_foto2.png';
-import img7_3 from '../assets/90s/imagenes/hito7_foto3.png';
 
+import img1_1 from '../assets/60s/imagenes/hito1_foto1.png';
+import img2_1 from '../assets/60s/imagenes/hito2_foto1.png';
+import img2_2 from '../assets/60s/imagenes/hito2_foto2.png';
+import img3_1 from '../assets/60s/imagenes/hito3_foto1.png';
+import img3_2 from '../assets/60s/imagenes/hito3_foto2.png';
+import img4_1 from '../assets/60s/imagenes/hito4_foto1.png';
+import img4_2 from '../assets/60s/imagenes/hito4_foto2.png';
+import img5_1 from '../assets/60s/imagenes/hito5_foto1.png';
 // ─────────────────────────────────────────────────────────────────────────────
 // DATOS — idénticos al original
 // ─────────────────────────────────────────────────────────────────────────────
 const HITOS_LEFT = [
   {
-    id: 1, year: '1990–1993', title: 'Violencia del Narcotráfico',
-    shortDesc: 'Atentados, asesinatos y enfrentamientos sacuden al país.',
+    id: 1, year: 'Década 1960', title: 'La semilla del rencor',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Muy buenas noches, Colombia. Somos Notihistórico, el noticiero de la historia, e iniciamos esta emisión con noticias preocupantes sobre la creciente violencia que afecta al país.\n\n' +
-      'Continúan los atentados, asesinatos y enfrentamientos relacionados con el narcotráfico, mientras aumentan las tensiones entre el Estado y grupos criminales liderados por reconocidos capos de la droga.\n\n' +
-      'La preocupación ciudadana crece ante una situación de orden público cada vez más compleja. Desde la redacción de Notihistórico, seguiremos informando.',
-    images: [img1_1, img1_2, img1_3], audioSrc: audio1,
-    datoClave: '1990–1993 · Cartel de Medellín · Narcoterrorismo · Crisis de orden público nacional',
-    fichaLineas: ['Período: 1990 – 1993','Actor: Cartel de Medellín','Tipo: Narcoterrorismo','Afectados: Civiles, jueces, políticos','Contexto: Crisis de orden público'],
+      'NOTIHISTÓRICO — EL NOTICIERO DE LA HISTORIA PRESENTA...\n\n' +
+      'Muy buenas noches, Colombia. Somos Notihistórico, el noticiero de la historia, y esta noche viajamos a los años 60, una década marcada por heridas que todavía seguían abiertas.\n\n' +
+      'Liberales y conservadores deciden alternarse el poder para evitar una nueva guerra entre partidos.\n\n' +
+      'Sin embargo, mientras las élites políticas hablaban de estabilidad, gran parte de la población seguía enfrentando pobreza, desigualdad y abandono estatal.\n\n' + 
+      'Para muchos colombianos, la violencia no había desaparecido. Simplemente había cambiado de forma.',
+    images: [img1_1], audioSrc: audio1,
+    datoClave: '1960 - 1070 · Violencia bipartista · frente nacional · liberales y conservadores',
+    fichaLineas: ['Período: 1960 – 1970','Actor: Liberales y conservadores','Tipo: bipartidismo','Afectados: Civiles, jueces, políticos','Contexto: Crisis política'],
     color: '#7a1a1a',
   },
   {
-    id: 2, year: '1991', title: 'Constitución Política de 1991',
-    shortDesc: 'Reforma política que amplía derechos y moderniza el Estado.',
+    id: 2, year: '1964', title: 'Marquetalia',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'En noticias nacionales, el gobierno del presidente César Gaviria promueve una nueva Constitución para el país. Esta reforma busca fortalecer la democracia, ampliar los derechos ciudadanos y modernizar las instituciones del Estado.\n\n' +
-      'Sin embargo, algunas decisiones generan debate, especialmente aquellas relacionadas con la extradición y su posible impacto en la lucha contra el narcotráfico.\n\n' +
-      'Colombia estrena un pacto social que reconoce por primera vez su diversidad étnica, crea la acción de tutela y establece la Corte Constitucional como guardiana de los derechos fundamentales.',
-    images: [img2_1, img2_2, img2_3], audioSrc: audio2,
-    datoClave: '4 de julio de 1991 · Gobierno Gaviria · 380 artículos · Reemplaza la Constitución de 1886',
-    fichaLineas: ['Fecha: 4 julio 1991','Promotor: Presidente Gaviria','Artículos: 380','Reemplaza: Constitución 1886','Nuevo: Acción de tutela'],
+      'Atención en el sur del país\n\n' +
+      'En 1964, el gobierno colombiano lanza una operación militar sobre la región de Marquetalia, una zona campesina señalada por las autoridades como una ‘república independiente’.\n\n' +
+      'El objetivo oficial era recuperar el control estatal del territorio y combatir grupos armados organizados en la región.\n\n' +
+      'La ofensiva militar deja una profunda huella en la historia del conflicto colombiano.\n\n'+
+      'De aquellos enfrentamientos surgen las Fuerzas Armadas Revolucionarias de Colombia, más conocidas como las FARC.\n\n'+
+      'Para muchos campesinos, el episodio simbolizó años de exclusión y abandono.Para el Estado, representaba el inicio de una amenaza insurgente cada vez más organizada.\n\n'+
+      'Y así comenzaba oficialmente una nueva etapa del conflicto armado colombiano.\n\n',
+    images: [img2_1, img2_2], audioSrc: audio2,
+    datoClave: 'Operación soberanía 1964 · Cuna de las FARC · Marquetalia',
+    fichaLineas: ['Fecha: 2 Enero 1964','Actor: Ejército,campesinos armados'],
     color: '#1a7a3c',
   },
   {
-    id: 3, year: '1991', title: 'Entrega de Pablo Escobar',
-    shortDesc: 'El capo más buscado del mundo se entrega bajo sus propias condiciones.',
+    id: 3, year: '1966', title: 'Revolución y fé',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'Atención, última hora. Pablo Emilio Escobar Gaviria se entrega oficialmente a las autoridades colombianas.\n\n' +
-      'La decisión ocurre en medio de los recientes cambios constitucionales y bajo un acuerdo que le permite permanecer en un centro de reclusión especial conocido como "La Catedral", construido bajo sus propias condiciones.\n\n' +
-      'El país permanece atento al rumbo de este caso. Los analistas advierten: el capo negoció sus términos, eligió su guardia y mantiene el control de su organización desde adentro.',
+      'Mientras crecía la tensión política y social, nuevas ideas empezaban a expandirse entre jóvenes, estudiantes y sectores religiosos del país.\n\n' +
+      'Uno de los nombres que más llamó la atención durante esta década fue el del sacerdote Camilo Torres Restrepo.\n\n' +
+      'Camilo defendía la idea de que la lucha contra la desigualdad social también era una responsabilidad cristiana.\n\n' +
+      'Sus discursos generaron admiración en algunos sectores y preocupación en otros.Finalmente, decide unirse al Ejército de Liberación Nacional, conocido como ELN.\n\n'+
+      'En 1966, Camilo Torres muere durante un enfrentamiento armado poco tiempo después de incorporarse a la guerrilla.\n\n'+
+      'La noticia impacta profundamente al país.Para muchos colombianos, su muerte simboliza la creciente radicalización política de la época y la sensación de que cada vez más personas comenzaban a perder la esperanza en una salida pacífica.\n\n',
     images: [img3_1, img3_2], audioSrc: audio3,
-    datoClave: '1991 · La Catedral, Envigado · Decreto de sometimiento a la justicia · Gobierno Gaviria',
-    fichaLineas: ['Fecha: 19 junio 1991','Lugar: La Catedral, Envigado','Marco: Decreto sometimiento','Gobierno: Gaviria','Nota: Construida por él mismo'],
+    datoClave: '1966 · ELN · Camilo Torres',
+    fichaLineas: ['Fecha: 1996','Actor: ELN , Camilo Torres','Nota: Soporte ideológico'],
     color: '#8B3A0A',
   },
 ];
 
 const HITOS_RIGHT = [
   {
-    id: 4, year: '1992', title: 'Fuga de Pablo Escobar',
-    shortDesc: 'El capo escapa de La Catedral cuando el gobierno intenta trasladarlo.',
+    id: 4, year: '1970', title: 'Las urnas bajo sospecha',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'Interrumpimos nuestra programación con información de última hora. Se confirma la fuga de Pablo Escobar de la prisión conocida como La Catedral.\n\n' +
-      'Autoridades adelantan operativos de búsqueda, mientras aumenta la preocupación por el posible regreso de episodios de violencia asociados al narcotráfico.\n\n' +
-      'El Bloque de Búsqueda, apoyado por la DEA y el Gobierno de Estados Unidos, inicia las operaciones más intensas de la historia reciente del país.',
+      'Y cuando la década llegaba a su final, un nuevo episodio aumentaría todavía más la desconfianza política en Colombia.\n\n' +
+      '19 de abril de 1970.El país entero sigue las elecciones presidenciales entre el candidato oficialista Misael Pastrana Borrero y el general Gustavo Rojas Pinilla.\n\n' +
+      'Durante horas, distintos sectores denuncian irregularidades y posibles alteraciones en el conteo de votos.\n\n' +
+      'La desconfianza hacia el sistema político comienza a crecer rápidamente.Y con ella, aparece una idea cada vez más peligrosa:\n\n'+
+      'que las vías democráticas parecían cerrarse para quienes buscaban cambios profundos en el país.',
     images: [img4_1, img4_2], audioSrc: audio4,
-    datoClave: '22 de julio de 1992 · La Catedral, Envigado · Inicio del Bloque de Búsqueda',
-    fichaLineas: ['Fecha: 22 julio 1992','Lugar: La Catedral, Envigado','Respuesta: Bloque de Búsqueda','Apoyo: DEA / EE.UU.','Impacto: Crisis credibilidad gobierno'],
+    datoClave: '19 de abril de 1970 · Elecciones · Fraude',
+    fichaLineas: ['Fecha: 19 de abril de 1970','Repercución: El país entero','Respuesta: Indignación ','Impacto: Crisis credibilidad gobierno'],
     color: '#5A0000',
   },
   {
-    id: 5, year: '1993', title: 'Muerte de Pablo Escobar',
-    shortDesc: 'El Bloque de Búsqueda abate al capo en Los Olivos, Medellín.',
+    id: 5, year: 'finales de los 60s', title: 'El origen de una larga guerra',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN DE ÚLTIMA HORA\n\n' +
-      'En noticias de última hora, autoridades confirman la muerte de Pablo Emilio Escobar Gaviria en el barrio Los Olivos, en Medellín, tras un operativo del Bloque de Búsqueda.\n\n' +
-      'Diversos sectores esperan que este hecho represente el inicio de una etapa de mayor tranquilidad para el país, aunque persisten preocupaciones sobre el futuro del narcotráfico.\n\n' +
-      'Dieciséis meses duró la cacería más intensa de la historia colombiana.',
-    images: [img5_1, img5_2], audioSrc: audio5,
-    datoClave: '2 de diciembre de 1993 · Los Olivos, Medellín · Bloque de Búsqueda · Fin del Cartel de Medellín',
-    fichaLineas: ['Fecha: 2 dic 1993','Lugar: Los Olivos, Medellín','Operativo: Bloque de Búsqueda','Cacería: 16 meses','Resultado: Fin Cartel Medellín'],
+      'Al terminar los años 60, Colombia ya mostraba señales de una fractura cada vez más profunda.La desigualdad social persistía.La presencia del Estado seguía siendo limitada en muchas regiones.\n\n' +
+      'La desigualdad social persistía.La presencia del Estado seguía siendo limitada en muchas regiones.Y nuevos grupos armados comenzaban a consolidarse en distintas zonas del país.\n\n' +
+      'Lo que inicialmente parecía un conflicto local y campesino empezaba lentamente a transformarse en una guerra mucho más compleja.\n\n' +
+      'Una guerra alimentada por la exclusión política, la pobreza y la falta de oportunidades para amplios sectores de la población.\n\n',
+    images: [img5_1], audioSrc: audio5,
+    datoClave: 'Lustro 64-69 · Surgimiento de guerrillas · Violencia Rural · Esfuerzos inútiles de mantener el control',
+    fichaLineas: ['Fecha: 64 - 69','Lugar: marquetalia y ciudades','Motivos: Abandono rural, desconfianza estatal','Resultado: años de violencia sin límites'],
     color: '#7a1a1a',
   },
   {
-    id: 6, year: '1998–1999', title: 'Crisis Económica',
-    shortDesc: 'Recesión, desempleo masivo y dificultades para miles de familias.',
+    id: 6, year: 'cierre', title: 'final',
+    shortDesc: '',
     guion:
-      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Atención colombianos: estos años no han sido los mejores para la economía colombiana, que hoy enfrenta momentos difíciles. El desempleo se agudiza y miles de familias reportan dificultades económicas.\n\n' +
-      'Expertos señalan problemas relacionados con la apertura económica de años anteriores, desequilibrios fiscales y una desaceleración de la economía.\n\n' +
-      'El gobierno hace un llamado a la calma mientras se anuncian nuevas medidas económicas.',
-    images: [img6_1, img6_2], audioSrc: audio6,
-    datoClave: '1998–1999 · Gobierno Pastrana · Crisis fiscal · Desempleo masivo',
-    fichaLineas: ['Período: 1998–1999','Desempleo: +20%','Crisis: Colapso UPAC','Causa: Apertura económica','Gobierno: Pastrana'],
+      'Porque en Colombia, muchas veces la historia no comenzó con grandes discursos…\n\n' +
+      'sino con comunidades enteras que sintieron que nunca fueron escuchadas.\n\n' +
+      'Y mientras esas heridas siguieran abiertas, el conflicto continuaría creciendo generación tras generación.\n\n' +
+      'Hasta aquí esta emisión especial de Notihistórico, el noticiero de la historia.Muy buenas noches, Colombia.',
+    images: [img1_1, img3_2], audioSrc: audio6,
+    datoClave: '1970 · Movimiento 19 de abril · Crisis electoral · desconfianza masiva',
+    fichaLineas: ['Período: 1970','Causa: Descontento Colectivo'],
     color: '#4a3a00',
-  },
-  {
-    id: 7, year: '1999–2000', title: 'Plan Colombia',
-    shortDesc: 'Estrategia antidrogas con apoyo de EE.UU. contra violencia y narcotráfico.',
-    guion:
-      'NOTIHISTÓRICO — EDICIÓN ESPECIAL\n\n' +
-      'Última hora: dada la crisis económica y en especial el aumento de cultivos y del mercado del narcotráfico, el gobierno nacional anuncia oficialmente el inicio del Plan Colombia.\n\n' +
-      'Una estrategia que busca fortalecer la seguridad, combatir el narcotráfico y reducir la violencia con apoyo internacional, especialmente de Estados Unidos.\n\n' +
-      'Hasta aquí esta emisión especial. Continuaremos informando sobre los hechos que marcan el rumbo de Colombia. Muy buenas noches.',
-    images: [img7_1, img7_2, img7_3], audioSrc: audio7,
-    datoClave: '1999–2000 · Gobierno Pastrana · Plan Colombia · Apoyo de EE.UU.',
-    fichaLineas: ['Período: 1999–2000','Inversión: USD $7.500M','Aliado: Estados Unidos','Estrategia: Fumigación + militar','Gobierno: Pastrana'],
-    color: '#1a4a2a',
   },
 ];
 
 const HITOS = [...HITOS_LEFT, ...HITOS_RIGHT];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SVG DECORATIVOS — era digital de los 90s
+// SVG DECORATIVOS — era digital de los 60s
 // ─────────────────────────────────────────────────────────────────────────────
 const CassetteDecor = () => (
   <svg viewBox="0 0 110 68" className="d90-decor-svg" xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +161,7 @@ const CDDecor = () => (
     </defs>
     <circle cx="32" cy="32" r="5" fill="#ddd" stroke="#aaa" strokeWidth="0.8"/>
     <circle cx="32" cy="32" r="2" fill="#bbb"/>
-    <text x="32" y="26" textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="4" fontFamily="monospace">Interactiva 90s</text>
+    <text x="32" y="26" textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="4" fontFamily="monospace">Interactiva 60s</text>
     <text x="32" y="38" textAnchor="middle" fill="rgba(0,0,0,0.3)" fontSize="3.5" fontFamily="monospace">Data Acústica</text>
   </svg>
 );
@@ -185,7 +169,7 @@ const CDDecor = () => (
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENTE PRINCIPAL
 // ─────────────────────────────────────────────────────────────────────────────
-export const Decade90s = () => {
+export const Decade60s = () => {
   const [activeHito, setActiveHito]   = useState(null);
   const [isPlaying, setIsPlaying]     = useState(false);
   const [imageIndex, setImageIndex]   = useState(0);
@@ -319,7 +303,7 @@ export const Decade90s = () => {
     setImageIndex(i => (i + 1) % activeHito.images.length);
   };
 
-  // Botón de hito — estilo GUI 90s
+  // Botón de hito — estilo GUI 60s
   const HitoBtn = ({ hito }) => {
     const isActive  = activeHito?.id === hito.id;
     const isSonando = isActive && isPlaying;
@@ -368,7 +352,7 @@ export const Decade90s = () => {
               <h2 className="d90-chapter-subtitle">Narcotráfico, constitución y crisis</h2>
             </div>
 
-            {/* ── TELEVISOR ESTILO 90s ── */}
+            {/* ── TELEVISOR ESTILO 60s ── */}
             <div className="d90-tv-wrap">
               <div className={`d90-tv ${tvState === 'on' ? 'd90-tv--on' : ''}`}>
 
@@ -426,7 +410,7 @@ export const Decade90s = () => {
                       </div>
                     </div>
 
-                    {/* Panel de control lateral — estilo GUI 90s */}
+                    {/* Panel de control lateral — estilo GUI 60s */}
                     <div className="d90-tv-panel">
                       {/* Display LED digital */}
                       <div className="d90-tv-display">

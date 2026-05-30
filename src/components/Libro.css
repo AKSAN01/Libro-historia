@@ -1,0 +1,511 @@
+/* ==========================================================================
+   1. ENTORNO Y CONTENEDOR PRINCIPAL (ADAPTATIVO PARA TODA LA PANTALLA)
+   ========================================================================== */
+.fondo-escritorio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #2b2b2b;
+  padding: 1.5vh 1.5vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* LA PASTA VERDE (Aprovecha el alto y ancho máximo del monitor del usuario) */
+.pasta-libro-verde {
+  position: relative;
+  display: flex;
+  width: 97vw;       
+  height: 95vh;      
+  min-height: 650px; 
+  background: linear-gradient(to right, #2a3328 0%, #3a4536 5%, #4a5445 50%, #3a4536 95%, #2a3328 100%);
+  border-radius: 12px;
+  padding: 1.5vh 1.8vw; 
+  box-sizing: border-box;
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.8), 
+    0 25px 45px rgba(0,0,0,0.6); 
+  outline: 2px solid #5d4a31;
+  outline-offset: -10px;
+}
+
+/* ==========================================================================
+   2. DETALLES ESTÉTICOS DEL LIBRO (MARCADOR Y LOMO CENTRAL)
+   ========================================================================== */
+.marcador-ribbon-puro {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 45px;
+  height: 50px;
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid #8b7355;
+}
+
+.marcador-ribbon-puro span {
+  color: #d6bc8e;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  margin-top: 15px;
+}
+
+.lomo-central {
+  width: 2px;
+  background-color: #a89473;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+
+/* ==========================================================================
+   3. LAS HOJAS Y EFECTOS DE PÁGINAS APILADAS
+   ========================================================================== */
+.hoja-libro {
+  flex: 1;
+  background: linear-gradient(to right, #ebdcb7, #f4e8ce, #ebdcb7);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hoja-izquierda {
+  border-radius: 5px 0 0 5px;
+  box-shadow: 
+    inset -30px 0 30px -15px rgba(0, 0, 0, 0.4), 
+    -2px 2px 0px #d3c29e, 
+    -4px 4px 0px #e4d3af, 
+    -6px 6px 0px #c2b28c; 
+}
+
+.hoja-derecha {
+  border-radius: 0 5px 5px 0;
+  box-shadow: 
+    inset 30px 0 30px -15px rgba(0, 0, 0, 0.4), 
+    2px 2px 0px #d3c29e, 
+    4px 4px 0px #e4d3af, 
+    6px 6px 0px #c2b28c; 
+}
+
+/* ==========================================================================
+   4. MARCOS DORADOS INTERNOS Y CONTROL DE ALTURA CONSTANTE
+   ========================================================================== */
+.marco-dorado-css {
+  position: absolute;
+  top: 3vh;
+  bottom: 3vh;
+  border: 1px solid #a38c62;
+  outline: 2px solid #a38c62;
+  outline-offset: -5px;
+  padding: 3vh 2.5vw;
+  box-sizing: border-box;
+}
+
+.marco-izquierdo { left: 2.5vw; right: 3.5vw; }
+.marco-derecho { left: 3.5vw; right: 2.5vw; }
+
+.contenido-texto-libro {
+  font-family: 'Georgia', serif;
+  color: #1a1a1a;
+  height: 100%;
+}
+
+.contenido-texto-libro > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 100%;
+}
+
+.layout-col { display: flex; flex-direction: column; height: 100%; }
+.layout-center { justify-content: center; }
+.space-between { justify-content: space-between; }
+
+/* ==========================================================================
+   5. TIPOGRAFÍA FLUIDA Y CAJAS DINÁMICAS (AJUSTE DINÁMICO DE ESPACIOS)
+   ========================================================================== */
+.titulo-principal {
+  font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+  color: #3b2c17;
+  text-align: center;
+  margin: 0 0 1vh 0;
+  font-weight: bold;
+}
+
+.subtitulo-principal {
+  font-size: clamp(1.2rem, 1.8vw, 2rem);
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 1vh 0;
+  color: #1a1a1a;
+}
+
+.tema-principal {
+  color: #6b5334;
+  text-align: center;
+  font-size: clamp(1.05rem, 1.4vw, 1.6rem);
+  font-weight: bold;
+  border-bottom: 2px solid #a38c62;
+  padding-bottom: 1.5vh;
+  margin: 0 0 2.5vh 0;
+}
+
+.parrafo-estilo {
+  font-size: clamp(1.05rem, 1.4vw, 1.7rem);
+  line-height: 1.7;
+  text-align: justify;
+  margin: 0 0 2vh 0;
+  color: #2b2b2b;
+}
+
+.titulo-seccion {
+  color: #3b2c17;
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 2.2rem);
+  margin-bottom: 2.5vh;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.caja-narracion {
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  margin-top: 1.5vh; 
+  margin-bottom: 1.5vh;
+}
+
+.burbuja-texto {
+  padding: 4vh 3vw; 
+  border: 1px solid #a38c62;
+  background-color: rgba(163, 140, 98, 0.05);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  gap: 2.5vh; 
+}
+
+.narrador-nombre {
+  color: #3b2c17;
+  display: block;
+  font-size: clamp(1.2rem, 1.7vw, 2.2rem); 
+  font-weight: bold;
+}
+
+.narrador-texto {
+  font-size: clamp(1.1rem, 1.5vw, 1.85rem); 
+  line-height: 1.75; 
+  text-align: justify;
+  margin: 0;
+}
+
+.emision-fin {
+  text-align: center;
+  font-style: italic;
+  font-size: clamp(1rem, 1.25vw, 1.5rem);
+  color: #888;
+  width: 100%;
+  margin-top: 1vh;
+}
+
+/* LISTA DE HITOS CLAVE */
+.lista-eventos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; 
+  gap: 1.5vh;
+}
+
+.lista-eventos li {
+  border-bottom: 1px dotted #a38c62;
+  padding-bottom: 1.5vh;
+}
+
+.lista-eventos li.no-linea { border-bottom: none; }
+
+.evento-titulo {
+  font-size: clamp(1.1rem, 1.5vw, 1.9rem);
+  color: #1a1a1a;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5vh;
+}
+
+.evento-desc {
+  margin: 0;
+  color: #333;
+  font-size: clamp(1rem, 1.25vw, 1.55rem);
+  line-height: 1.55;
+  text-align: justify;
+}
+
+/* BOTONES DEL LIBRO (SIGUIENTE / VOLVER) */
+.boton-libro {
+  cursor: pointer;
+  background-color: #3b2c17;
+  color: #ebdcb7;
+  border: 1px solid #a38c62;
+  padding: 1.5vh 2vw;
+  font-family: 'Georgia', serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.4rem);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 2vh;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.boton-libro:hover {
+  background-color: #a38c62;
+  color: #1a1a1a;
+}
+
+/* ==========================================================================
+   6. INTERFAZ DE TELEVISOR DE NOTICIAS (PÁGINA 2)
+   ========================================================================== */
+.tv-contenedor {
+  width: 100%;
+  flex-grow: 1;        
+  margin-top: 1.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2vh;
+}
+
+.tv-marco {
+  width: 100%;
+  height: 100%;
+  max-height: 55vh; 
+  background-color: #1a1a1a; 
+  border-radius: 12px;
+  padding: 2.5vh 1.5vw; 
+  box-shadow: 
+    0 15px 25px rgba(0,0,0,0.5), 
+    inset 0 0 10px rgba(255,255,255,0.1);
+  border: 2px solid #2b2b2b;
+  position: relative;
+}
+
+.tv-pantalla {
+  width: 100%;
+  height: 100%;
+  background-color: #0c0c0c;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.9); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tv-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  opacity: 0.9; 
+  filter: contrast(1.1) brightness(0.9); 
+}
+
+/* Estado de estática/sin señal */
+.tv-ruido {
+  color: #fff;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  opacity: 0.7;
+}
+
+.tv-ruido h2 {
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  margin: 0 0 1vh 0;
+  letter-spacing: 2px;
+}
+
+.tv-ruido p {
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
+  color: #ff4444;
+  margin: 0;
+}
+
+/* Gráficos del Noticiero sobrepuestos a la imagen */
+.tv-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tv-badge-vivo {
+  align-self: flex-start;
+  background-color: #cc0000;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  padding: 4px 10px;
+  margin: 10px;
+  border-radius: 3px;
+  animation: titilar 1.5s infinite;
+}
+
+.tv-banner-inferior {
+  display: flex;
+  width: 100%;
+  background-color: rgba(26, 26, 26, 0.9);
+  color: white;
+  border-top: 2px solid #cc0000;
+  align-items: center;
+}
+
+.tv-ticker {
+  background-color: #cc0000;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 900;
+  padding: 8px 15px;
+  font-size: clamp(0.7rem, 1vw, 1.1rem);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tv-titular-texto {
+  font-family: 'Georgia', serif;
+  padding: 8px 15px;
+  font-size: clamp(0.85rem, 1.2vw, 1.3rem);
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes titilar {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDAD TOTAL: CONFIGURACIÓN PARA TELÉFONOS MÓVILES (MÁX 850PX)
+   ========================================================================== */
+@media screen and (max-width: 850px) {
+  .fondo-escritorio {
+    align-items: flex-start;
+    padding: 10px;
+    overflow-y: auto; 
+  }
+
+  .pasta-libro-verde {
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px; 
+    height: auto;     
+    min-height: auto;
+    padding: 35px 12px 15px 12px;
+    outline-offset: -6px;
+  }
+
+  .lomo-central {
+    display: none; 
+  }
+
+  .hoja-libro {
+    width: 100%;
+    flex: none;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .hoja-izquierda {
+    margin-bottom: 15px; 
+  }
+
+  .marco-dorado-css {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 8px;
+    padding: 20px 15px;
+    outline-offset: -4px;
+  }
+
+  .contenido-texto-libro > div {
+    height: auto;
+  }
+
+  .layout-col {
+    height: auto;
+    gap: 15px;
+  }
+
+  .caja-narracion {
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .burbuja-texto {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  /* Reajustes tipográficos proporcionales exclusivos de smartphones */
+  .titulo-principal { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+  .subtitulo-principal { font-size: clamp(1.15rem, 4vw, 1.4rem); }
+  .tema-principal { font-size: clamp(1rem, 3.5vw, 1.15rem); margin-bottom: 15px; padding-bottom: 8px; }
+  .titulo-seccion { font-size: clamp(1.2rem, 4.5vw, 1.5rem); margin-bottom: 15px; }
+  
+  .parrafo-estilo, 
+  .narrador-texto, 
+  .evento-desc { 
+    font-size: clamp(0.95rem, 3.2vw, 1.05rem); 
+    line-height: 1.45; 
+  }
+
+  .evento-titulo {
+    font-size: clamp(1.05rem, 3.5vw, 1.2rem);
+  }
+
+  /* Ajustes del televisor para móvil */
+  .tv-marco {
+    height: 250px;
+    min-height: 250px;
+    padding: 15px;
+  }
+
+  .tv-ticker, .tv-titular-texto {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .boton-libro {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .marcador-ribbon-puro {
+    top: -8px;
+    width: 40px;
+    height: 45px;
+  }
+}
