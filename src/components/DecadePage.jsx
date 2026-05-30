@@ -5,6 +5,7 @@ import { decades } from '../data/decades';
 import { BookLayout } from './BookLayout';
 import { Placeholder } from './Placeholder';
 import { Decade90s } from './Decade90s'; // ← El componente personalizado del Capítulo 4
+import { Decade60s } from './Decade60s';
 import { Decade70s } from './Decade70s.jsx';
 
 export const DecadePage = () => {
@@ -14,6 +15,8 @@ export const DecadePage = () => {
   if (tag === '90s') {
     return <Decade90s />;
   }
+  if (tag === '60s'){
+    return <Decade60s/>
   if (tag === '70s') {
     return <Decade70s />;
   }
