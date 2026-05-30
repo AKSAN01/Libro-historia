@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { decades } from '../data/decades';
 import { BookLayout } from './BookLayout';
 import { Placeholder } from './Placeholder';
+import { Decade90s } from './Decade90s'; // ← El componente personalizado del Capítulo 4
+import { Decade60s } from './Decade60s';
+import { Decade70s } from './Decade70s.jsx';
 
 export const DecadePage = () => {
   const { tag } = useParams();
@@ -21,6 +24,22 @@ export const DecadePage = () => {
       </div>
     );
   }
+
+  // ─── Ruta genérica para las demás décadas ────────────────────────
+  const decadeData = decades.find(d => d.tag === tag);
+  const [page, setPage] = useState(1);
+
+  if (!decadeData) return <div>Década no encontrada.</div>;
+
+  const getText = (a, b) => {
+    const full = (a || '') + ' ' + (b || '');
+    const mid = Math.ceil(full.length / 2);
+    return [full.slice(0, mid), full.slice(mid)];
+  };
+
+  const [col1, col2] = page === 1
+    ? getText(decadeData.intro1, decadeData.intro2)
+    : getText(decadeData.intro3, decadeData.intro4);
 
   const LeftPage = () => (
     <div style={styles.pageContent}>
@@ -87,7 +106,7 @@ const styles = {
     color: 'var(--petrol-blue)',
     textDecoration: 'none',
     fontWeight: 'bold',
-    marginBottom: '30px',
+    marginBottom: '20px',
     display: 'inline-block',
   },
   subtitle: {
@@ -103,18 +122,54 @@ const styles = {
     lineHeight: '1',
     marginBottom: '10px',
   },
+  capitalRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px',
+    marginBottom: '20px',
+  },
+  capitalLetter: {
+    fontFamily: 'var(--font-title)',
+    fontSize: '5rem',
+    lineHeight: '1',
+    color: 'var(--aged-gold)',
+    border: '2px solid var(--aged-gold)',
+    padding: '0 10px',
+  },
   chapterTitle: {
     fontFamily: 'var(--font-subtitle)',
     fontSize: '2rem',
     color: 'var(--leather-brown)',
-    marginBottom: '30px',
   },
-  description: {
+  columnsContainer: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '20px',
+    flex: 1,
+    overflow: 'hidden',
+  },
+  column: {
     fontFamily: 'var(--font-text)',
-    fontSize: '1.1rem',
+    fontSize: '0.9rem',
     color: 'var(--soft-ink)',
     lineHeight: '1.6',
-    marginBottom: '30px',
+    overflow: 'hidden',
+    textAlign: 'justify',
+  },
+  audio: {
+    width: '100%',
+    marginTop: '15px',
+  },
+  pageBtn: {
+    alignSelf: 'flex-end',
+    background: 'none',
+    border: '1px solid var(--aged-gold)',
+    color: 'var(--aged-gold)',
+    fontFamily: 'var(--font-text)',
+    padding: '8px 16px',
+    cursor: 'pointer',
+    borderRadius: '4px',
+    marginTop: '10px',
   },
   factBox: {
     backgroundColor: 'rgba(214, 194, 168, 0.3)',
@@ -125,35 +180,10 @@ const styles = {
     fontStyle: 'italic',
     marginTop: 'auto',
   },
-  cardsContainer: {
-    marginTop: '30px',
+  imagesContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: '15px',
+    flex: 1,
   },
-  card: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    padding: '15px',
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
-    borderLeft: '4px solid',
-    borderRadius: '0 4px 4px 0',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-  },
-  cardIcon: {
-    fontSize: '1.5rem',
-    marginRight: '15px',
-  },
-  cardTitle: {
-    fontFamily: 'var(--font-text)',
-    fontWeight: 'bold',
-    color: 'var(--petrol-blue)',
-    marginBottom: '5px',
-  },
-  cardBody: {
-    fontFamily: 'var(--font-text)',
-    fontSize: '0.9rem',
-    color: 'var(--soft-ink)',
-    lineHeight: '1.4',
-  }
 };
