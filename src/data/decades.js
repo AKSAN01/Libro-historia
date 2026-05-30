@@ -111,22 +111,13 @@ export const decades = [
       { icon: "🤝", title: "Desmovilización AUC", body: "Miles de paramilitares dejan las armas a mediados de la década.", color: "#FCD116" },
     ]
   },
-  {
-    tag: "10s", index: 5,
-    period: "2010 — 2020",
-    title: "El camino hacia la Paz",
-    accentColor: "#FCD116",
-    description: "Tras años de intensos combates, el gobierno y la guerrilla de las FARC inician diálogos en La Habana que culminan en un acuerdo histórico.",
-    groupA: { name: "El Gobierno", headColor: "#4488DD", bodyColor: "#003893" },
-    groupB: { name: "FARC-EP", headColor: "#CE1126", bodyColor: "#6B0000" },
-    vs: "🤝",
-    fact: "En 2016 se firma el Acuerdo de Paz con las FARC, poniendo fin al conflicto con la guerrilla más antigua de América.",
-    cards: [
-      { icon: "🕊️", title: "Diálogos de Paz", body: "Gobierno y FARC negocian en Cuba para poner fin a 50 años de guerra.", color: "#FCD116" },
-      { icon: "📝", title: "Firma del Acuerdo", body: "Histórico acuerdo de paz firmado en 2016 que desmovilizó a miles de combatientes.", color: "#003893" },
-      { icon: "🌱", title: "Transición", body: "Inicio del largo y complejo proceso de implementar los acuerdos en el país.", color: "#228B22" },
-    ]
-  },
+ {
+  tag: "10s", 
+  index: 5, // Importante para el número del capítulo
+  period: "2010 — 2020",
+  accentColor: "#FCD116", // Color del lomo
+  
+},
   {
     tag: "20s", index: 6,
     period: "2020 — 2026",

@@ -10,15 +10,19 @@ import { Decade70s } from './Decade70s.jsx';
 
 export const DecadePage = () => {
   const { tag } = useParams();
+  // Buscamos la década, si no existe el tag, devolvemos null
+  const decadeData = decades.find(d => d.tag === tag);
 
-  // ─── Ruta especial para los 90s ─────────────────────────────────
-  if (tag === '90s') {
-    return <Decade90s />;
-  }
-  if (tag === '60s'){
-    return <Decade60s/>
-  if (tag === '70s') {
-    return <Decade70s />;
+  // Pantalla de error si la década no existe
+  if (!decadeData) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: '#fff' }}>
+        <div>
+          <h2>Década no encontrada.</h2>
+          <Link to="/timeline" style={{ color: '#d6bc8e' }}>Volver a la estantería</Link>
+        </div>
+      </div>
+    );
   }
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
@@ -40,43 +44,40 @@ export const DecadePage = () => {
   const LeftPage = () => (
     <div style={styles.pageContent}>
       <Link to="/timeline" style={styles.backLink}>← Volver a la estantería</Link>
-      <h3 style={{...styles.subtitle, color: decadeData.accentColor}}>CAPÍTULO {decadeData.index + 1}</h3>
+      
+      {/* Añadimos un fallback al índice por si acaso no está definido en el objeto */}
+      <h3 style={{...styles.subtitle, color: decadeData.accentColor || '#d6bc8e'}}>
+        CAPÍTULO {decadeData.index !== undefined ? decadeData.index + 1 : '...'}
+      </h3>
+      
       <h1 style={styles.title}>{decadeData.period}</h1>
-
-      <div style={styles.capitalRow}>
-        <span style={styles.capitalLetter}>{decadeData.title[0]}</span>
-        <h2 style={styles.chapterTitle}>{decadeData.title}</h2>
-      </div>
-
-      <div style={styles.columnsContainer}>
-        <p style={styles.column}>{col1}</p>
-        <p style={styles.column}>{col2}</p>
-      </div>
-
-    <audio key={page} controls style={styles.audio}>
-      <source src={page === 1 ? decadeData.audio  : decadeData.audio2} type="audio/mpeg" />
-    </audio>
-      <button
-        onClick={() => setPage(p => p === 1 ? 2 : 1)}
-        style={styles.pageBtn}>
-        {page === 1 ? '▶ Siguiente página' : '◀ Página anterior'}
-      </button>
+      <h2 style={styles.chapterTitle}>{decadeData.title}</h2>
+      
+      <p style={styles.description}>{decadeData.description}</p>
+      
+      {decadeData.fact && (
+        <div style={styles.factBox}>
+          <strong>Dato clave:</strong> {decadeData.fact}
+        </div>
+      )}
     </div>
   );
 
   const RightPage = () => (
     <div style={styles.pageContent}>
-      {page === 1 ? (
-        <Placeholder type="video" height="100%" text="Video documental de la década" />
-      ) : (
-        <div style={styles.imagesContainer}>
-          <Placeholder type="image" height="48%" text="Imagen histórica 1" />
-          <Placeholder type="image" height="48%" text="Imagen histórica 2" />
-        </div>
-      )}
-
-      <div style={styles.factBox}>
-        <strong>Dato clave:</strong> {page === 1 ? decadeData.fact : decadeData.fact2}
+      <Placeholder type="video" height="300px" text="Video documental de la década" />
+      
+      <div style={styles.cardsContainer}>
+        {/* Añadimos un check para asegurarnos que 'cards' existe */}
+        {decadeData.cards && decadeData.cards.map((card, idx) => (
+          <div key={idx} style={{...styles.card, borderLeftColor: card.color || '#d6bc8e'}}>
+            <span style={styles.cardIcon}>{card.icon}</span>
+            <div>
+              <h4 style={styles.cardTitle}>{card.title}</h4>
+              <p style={styles.cardBody}>{card.body}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
