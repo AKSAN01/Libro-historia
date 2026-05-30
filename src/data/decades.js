@@ -1,4 +1,36 @@
+import intro1 from '../assets/intro1.txt?raw';
+import intro2 from '../assets/intro2.txt?raw';
+import audio from '../assets/audio/intro.mp3';
+import audio2 from '../assets/audio/audio2.mp3'; 
+import intro3 from '../assets/intro3.txt?raw';
+import intro4 from '../assets/intro4.txt?raw';
+
+
 export const decades = [
+ {
+  tag: "50s", index: 1,
+  period: "1950 — 1960",
+  title: "La Violencia y el Frente Nacional",
+  accentColor: "#CE1126",
+  description: "Una década marcada por la represión bipartidista, un golpe de Estado y los primeros pasos hacia la democracia con el voto femenino.",
+  groupA: { name: "Partido Liberal", headColor: "#FCD116", bodyColor: "#003893" },
+  groupB: { name: "Partido Conservador", headColor: "#CE1126", bodyColor: "#6B0000" },
+  vs: "VS", 
+  fact: "En 1957 las mujeres colombianas votaron por primera vez en el plebiscito que dio origen al Frente Nacional.",
+  fact2: "El gobierno de Laureano Gómez intensifica la persecución bipartidista dejando miles de víctimas en zonas rurales.",
+  intro1: intro1,
+  intro2: intro2,
+  intro3: intro3,
+  intro4: intro4,
+  audio: audio,
+  audio2: audio2,
+  cards: [
+    { icon: "🔥", title: "La Violencia", body: "El gobierno de Laureano Gómez intensifica la persecución bipartidista dejando miles de víctimas en zonas rurales.", color: "#CE1126" },
+    { icon: "📰", title: "Censura de prensa", body: "Periódicos liberales son incendiados en Bogotá en 1952, silenciando voces opositoras al régimen conservador.", color: "#6B0000" },
+    { icon: "🎖️", title: "Golpe de Rojas Pinilla", body: "El general Gustavo Rojas Pinilla toma el poder en 1953 prometiendo paz, pero la represión continúa con la llegada de la televisión en 1954.", color: "#5A2D8A" },
+    { icon: "🗳️", title: "Primer voto femenino", body: "El plebiscito de 1957 marca un hito histórico: las colombianas ejercen su derecho al voto por primera vez.", color: "#003893" },
+  ]
+},  
   {
     tag: "60s", index: 0,
     period: "1960 — 1970",
