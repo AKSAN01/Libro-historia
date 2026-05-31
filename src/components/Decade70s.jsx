@@ -108,16 +108,24 @@ const HITOS_RIGHT = [
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade70s = () => {
+  const anim70s = {
+    initial: { opacity: 0, scale: 1.1, filter: 'contrast(150%) hue-rotate(90deg)' },
+    animate: { opacity: 1, scale: 1, filter: 'contrast(100%) hue-rotate(0deg)' },
+    transition: { duration: 0.5, type: 'spring', damping: 10, stiffness: 100 }
+  };
+
   return (
     <NotihistoricoLayout 
       chapterIndex="2"
       period="1970 — 1979"
-      subtitle="Crisis, insurgencia y el inicio del narcotráfico"
+      subtitle="De las urnas a las armas"
       hitosLeft={HITOS_LEFT}
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1970–1979"
       cdLabel="Interactiva 70s"
+      themeClass="theme-70s"
+      customAnim={anim70s}
     />
   );
 };

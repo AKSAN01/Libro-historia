@@ -136,16 +136,24 @@ const HITOS = [...HITOS_LEFT, ...HITOS_RIGHT];
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade90s = () => {
+  const anim90s = {
+    initial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 1, ease: "easeOut" }
+  };
+
   return (
     <NotihistoricoLayout 
       chapterIndex="4"
-      period="1990 — 2000"
-      subtitle="Narcotráfico, constitución y crisis"
+      period="1990 — 1999"
+      subtitle="Entre el terror y la esperanza"
       hitosLeft={HITOS_LEFT}
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
-      cassetteLabel2="Colombia 1990–2000"
+      cassetteLabel2="Colombia 1990–1999"
       cdLabel="Interactiva 90s"
+      themeClass="theme-90s"
+      customAnim={anim90s}
     />
   );
 };

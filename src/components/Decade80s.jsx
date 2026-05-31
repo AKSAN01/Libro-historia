@@ -142,16 +142,24 @@ const HITOS = [...HITOS_LEFT, ...HITOS_RIGHT];
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade80s = () => {
+  const anim80s = {
+    initial: { opacity: 0, scale: 0.9, filter: 'brightness(2) contrast(150%) blur(10px)' },
+    animate: { opacity: 1, scale: 1, filter: 'brightness(1) contrast(100%) blur(0px)' },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
   return (
     <NotihistoricoLayout 
       chapterIndex="3"
       period="1980 — 1989"
-      subtitle="La década del miedo: narcotráfico y guerra urbana"
+      subtitle="El país en el abismo"
       hitosLeft={HITOS_LEFT}
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1980–1989"
       cdLabel="Interactiva 80s"
+      themeClass="theme-80s"
+      customAnim={anim80s}
     />
   );
 };

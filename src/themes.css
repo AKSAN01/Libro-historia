@@ -1,0 +1,171 @@
+/* ========================================================
+   SISTEMA DE TEMÁTICAS POR DÉCADA
+   Cada clase sobreescribe las variables globales para dar
+   una estética única a BookLayout y sus contenidos.
+   ======================================================== */
+
+/* --- 1950s: Prensa Clásica ---
+   Paleta: Sepia pálido / Rojo carmesí oscuro
+   Tipografía: Playfair Display / Courier Prime
+   Textura: Grano de papel periódico
+*/
+.theme-50s {
+  --aged-paper: #E6DFD3;
+  --soft-ink: #2C2621;
+  --leather-brown: #8A2522; /* Rojo Carmesí */
+  --aged-gold: #9C7A4B;
+  
+  --font-title: 'Playfair Display', serif;
+  --font-subtitle: 'Playfair Display', serif;
+  --font-text: 'Courier Prime', monospace;
+
+  /* Ruido denso y oscuro */
+  --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* --- 1960s: Panfleto Clandestino ---
+   Paleta: Verde selva oscuro / Negro noche
+   Tipografía: Bebas Neue / Special Elite
+   Textura: Mimeógrafo (Líneas diagonales sucias)
+*/
+.theme-60s {
+  --aged-paper: #0A120D; /* Negro verde */
+  --soft-ink: #B8D8C3;   /* Verde claro sucio */
+  --leather-brown: #4A7C59; /* Verde selva */
+  --aged-gold: #7B907E;
+  
+  --font-title: 'Bebas Neue', sans-serif;
+  --font-subtitle: 'Bebas Neue', sans-serif;
+  --font-text: 'Special Elite', cursive;
+
+  /* Líneas diagonales tipo esténcil/mimeógrafo */
+  --paper-texture: repeating-linear-gradient(45deg, rgba(184,216,195,0.03) 0px, rgba(184,216,195,0.03) 2px, transparent 2px, transparent 6px), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* --- 1970s: Underground / Fanzine ---
+   Paleta: Naranja urbano / Asfalto
+   Tipografía: Anton / IBM Plex Mono
+   Textura: Halftone (Semitono de impresión gruesa)
+*/
+.theme-70s {
+  --aged-paper: #1A1816; /* Asfalto oscuro */
+  --soft-ink: #EAE6E1;
+  --leather-brown: #DE6B35; /* Naranja urbano */
+  --aged-gold: #B3572B;
+  
+  --font-title: 'Anton', sans-serif;
+  --font-subtitle: 'Anton', sans-serif;
+  --font-text: 'IBM Plex Mono', monospace;
+
+  /* Patrón de puntos grandes (Halftone) */
+  --paper-texture: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='2' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+}
+
+/* --- 1980s: Terror / Tensión ---
+   Paleta: Negro Absoluto / Rojo Sangre
+   Tipografía: Oswald / Space Mono
+   Textura: Estática intensa de TV
+*/
+.theme-80s {
+  --aged-paper: #050505;
+  --soft-ink: #E0E0E0;
+  --leather-brown: #FF4D4D; /* Rojo brillante para contraste */
+  --aged-gold: #FF6B6B;
+  
+  --font-title: 'Oswald', sans-serif;
+  --font-subtitle: 'Oswald', sans-serif;
+  --font-text: 'Space Mono', monospace;
+
+  /* Estática dura + Scanlines */
+  --paper-texture: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200,0,0,0.03) 2px, rgba(200,0,0,0.03) 4px), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+/* --- 1990s: Institucional Constitucional ---
+   Paleta: Blanco papel / Azul institucional
+   Tipografía: Montserrat / Source Serif 4
+   Textura: Puntos extremadamente finos y limpios
+*/
+.theme-90s {
+  --aged-paper: #F8F9FA;
+  --soft-ink: #1D2D44;
+  --leather-brown: #0D47A1; /* Azul profundo constitucional */
+  --aged-gold: #1976D2;
+  
+  --font-title: 'Montserrat', sans-serif;
+  --font-subtitle: 'Montserrat', sans-serif;
+  --font-text: 'Source Serif 4', serif;
+
+  /* Puntos minúsculos y ordenados */
+  --paper-texture: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='0.5' fill='rgba(29,45,68,0.05)'/%3E%3C/svg%3E");
+}
+
+/* --- 2000s: Documento Táctico / Militar ---
+   Paleta: Verde militar / Gris plomo
+   Tipografía: Barlow Condensed / Roboto Condensed
+   Textura: Crosshatch (Malla táctica)
+*/
+.theme-00s {
+  --aged-paper: #2C302B; /* Verde militar muy oscuro */
+  --soft-ink: #D8DFD6;
+  --leather-brown: #9CC594; /* Verde brillante para contraste */
+  --aged-gold: #B6CBB1;
+  
+  --font-title: 'Barlow Condensed', sans-serif;
+  --font-subtitle: 'Barlow Condensed', sans-serif;
+  --font-text: 'Roboto Condensed', sans-serif;
+
+  /* Cuadrícula táctica */
+  --paper-texture: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 15px), repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 15px);
+}
+
+/* --- 2010s: Acuerdo de Paz ---
+   Paleta: Blanco cálido / Ocre Dorado
+   Tipografía: Libre Baskerville / Lora
+   Textura: Grano muy sutil, casi prístino
+*/
+.theme-10s {
+  --aged-paper: #FFFDF8;
+  --soft-ink: #332F2A;
+  --leather-brown: #BFA054; /* Ocre Dorado */
+  --aged-gold: #D4B976;
+  
+  --font-title: 'Libre Baskerville', serif;
+  --font-subtitle: 'Libre Baskerville', serif;
+  --font-text: 'Lora', serif;
+
+  /* Grano elegantísimo y suave */
+  --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* --- 2020s: Era Digital / Redes ---
+   Paleta: OLED Black / Violeta Neón Digital
+   Tipografía: Syne / JetBrains Mono
+   Textura: Glitch digital / Matriz
+*/
+.theme-20s {
+  --aged-paper: #08040C; /* Negro Violeta OLED */
+  --soft-ink: #E5DDF5;
+  --leather-brown: #B388FF; /* Violeta claro brillante */
+  --aged-gold: #D0BFFF;
+  
+  --font-title: 'Syne', sans-serif;
+  --font-subtitle: 'Syne', sans-serif;
+  --font-text: 'JetBrains Mono', monospace;
+
+  /* Matriz de píxeles digital */
+  --paper-texture: repeating-linear-gradient(180deg, rgba(138,43,226,0.03) 0px, rgba(138,43,226,0.03) 1px, transparent 1px, transparent 3px), repeating-linear-gradient(90deg, rgba(138,43,226,0.02) 0px, rgba(138,43,226,0.02) 1px, transparent 1px, transparent 3px);
+}
+
+/* --- Tema General de la Estantería ---
+   Para envolver de forma global los contenedores que lo requieran
+*/
+.library-bg {
+  background: linear-gradient(135deg, #1a0f07 0%, #0a0402 100%);
+}
+
+/* --- Corrección de Herencia ---
+   Fuerza a todos los temas a re-evaluar el color del texto con el valor de --soft-ink local.
+*/
+[class*="theme-"] {
+  color: var(--soft-ink);
+}

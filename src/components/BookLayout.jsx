@@ -24,7 +24,7 @@ export const BookLayout = ({ leftPage, rightPage }) => {
       perspective: '1500px'
     },
     leatherCover: {
-      backgroundColor: 'var(--leather-brown)',
+      backgroundColor: '#3d2618', /* Color cuero estático, no temático */
       borderRadius: '8px',
       padding: isMobile ? '10px' : '15px',
       boxShadow: 'var(--book-shadow)',
@@ -38,7 +38,7 @@ export const BookLayout = ({ leftPage, rightPage }) => {
       display: 'flex',
       width: '100%',
       height: '100%',
-      backgroundColor: 'var(--petrol-blue)', // Un pequeño borde visible alrededor del papel
+      backgroundColor: '#1F2E3D', /* Borde azul petróleo estático */
       padding: '4px',
       borderRadius: '4px',
       gap: isMobile ? '0' : '2px', // Espacio del lomo en desktop

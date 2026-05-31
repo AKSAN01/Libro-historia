@@ -87,15 +87,34 @@ export const DecadePage = () => {
     </div>
   );
 
+  const getAnimation = (tag) => {
+    switch (tag) {
+      case '50s': return { initial: { opacity: 0, y: 50 }, animate: { opacity: 1, y: 0 }, transition: { duration: 1, ease: "easeOut" } };
+      case '00s': return { initial: { opacity: 0, x: 50 }, animate: { opacity: 1, x: 0 }, transition: { duration: 0.8, ease: "easeOut" } };
+      case '10s': return { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 2, ease: "easeIn" } }; // Simulando una aparición lenta
+      case '20s': return { 
+        initial: { opacity: 0, scale: 1.05, filter: 'hue-rotate(90deg)' }, 
+        animate: { opacity: 1, scale: 1, filter: 'hue-rotate(0deg)' }, 
+        transition: { duration: 0.6, type: 'spring' } 
+      };
+      default: return { initial: { opacity: 0, filter: 'blur(10px)' }, animate: { opacity: 1, filter: 'blur(0px)' }, transition: { duration: 0.8, ease: "easeOut" } };
+    }
+  };
+  
+  const anim = getAnimation(tag);
+
   return (
     <motion.div
-      initial={{ opacity: 0, filter: 'blur(10px)' }}
-      animate={{ opacity: 1, filter: 'blur(0px)' }}
+      initial={anim.initial}
+      animate={anim.animate}
       exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.5 } }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      style={{ width: '100%', height: '100vh', backgroundColor: 'var(--soft-ink)' }}
+      transition={anim.transition}
+      className="library-bg"
+      style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}
     >
-      <BookLayout leftPage={<LeftPage />} rightPage={<RightPage />} />
+      <div className={`theme-${tag}`} style={{ flex: 1, display: 'flex' }}>
+        <BookLayout leftPage={<LeftPage />} rightPage={<RightPage />} />
+      </div>
     </motion.div>
   );
 };
@@ -108,7 +127,8 @@ const styles = {
   },
   backLink: {
     fontFamily: 'var(--font-text)',
-    color: 'var(--petrol-blue)',
+    color: 'var(--soft-ink)',
+    opacity: 0.8,
     textDecoration: 'none',
     fontWeight: 'bold',
     marginBottom: '20px',

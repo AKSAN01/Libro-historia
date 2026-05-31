@@ -63,7 +63,9 @@ export const NotihistoricoLayout = ({
   hitosRight, 
   cassetteLabel1 = "NOTIHISTÓRICO",
   cassetteLabel2 = "Colombia",
-  cdLabel = "Interactiva"
+  cdLabel = "Interactiva",
+  themeClass = "",
+  customAnim = null
 }) => {
   const [activeHito, setActiveHito]   = useState(null);
   const [isPlaying, setIsPlaying]     = useState(false);
@@ -220,11 +222,11 @@ export const NotihistoricoLayout = ({
 
   return (
     <motion.div
-      className="notih-root"
-      initial={{ opacity: 0, filter: 'blur(10px)' }}
-      animate={{ opacity: 1, filter: 'blur(0px)' }}
+      className={`notih-root library-bg ${themeClass}`}
+      initial={customAnim ? customAnim.initial : { opacity: 0, filter: 'blur(10px)' }}
+      animate={customAnim ? customAnim.animate : { opacity: 1, filter: 'blur(0px)' }}
       exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.5 } }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      transition={customAnim ? customAnim.transition : { duration: 0.8, ease: 'easeOut' }}
     >
       <div className="notih-book">
 
