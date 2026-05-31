@@ -1,40 +1,20 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { BookLayout } from './components/BookLayout';
-import { WelcomePage } from './components/WelcomePage';
-import { IndexMenu } from './components/IndexMenu';
 import { Timeline } from './components/Timeline';
 import { DecadePage } from './components/DecadePage';
 import Decada2010 from './components/Decada2010';
 
-function IndexView() {
-  return (
-    <>
-      <BookLayout 
-        leftPage={<WelcomePage />} 
-        rightPage={<IndexMenu />} 
-      />
-      <div style={styles.bottomBar}>
-        <div style={styles.periodLabel}>
-          <span>1960 – Actualidad</span>
-        </div>
-      </div>
-    </>
-  );
-}
-
 export default function App() {
   const location = useLocation();
-  const isTimeline = location.pathname === '/timeline';
+  const isTimeline = location.pathname === '/';
 
   return (
     <>
       {!isTimeline && <div className="noise-overlay"></div>}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<IndexView />} />
-          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/" element={<Timeline />} />
           
           {/* Ruta corregida para coincidir con el tag "10s" de tu archivo de datos */}
           <Route path="/decade/10s" element={<Decada2010 />} />

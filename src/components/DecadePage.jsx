@@ -20,18 +20,18 @@ export const DecadePage = () => {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: '#fff' }}>
         <div>
           <h2>Década no encontrada.</h2>
-          <Link to="/timeline" style={{ color: '#d6bc8e' }}>Volver a la estantería</Link>
+          <Link to="/" style={{ color: '#d6bc8e' }}>Volver a la estantería</Link>
         </div>
       </div>
     );
   }
 
-  if (tag === '80s') {
-    return <Decade80s />;
-  }
+  if (tag === '60s') return <Decade60s />;
+  if (tag === '70s') return <Decade70s />;
+  if (tag === '80s') return <Decade80s />;
+  if (tag === '90s') return <Decade90s />;
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
-  const decadeData = decades.find(d => d.tag === tag);
   const [page, setPage] = useState(1);
 
   if (!decadeData) return <div>Década no encontrada.</div>;
@@ -48,7 +48,7 @@ export const DecadePage = () => {
 
   const LeftPage = () => (
     <div style={styles.pageContent}>
-      <Link to="/timeline" style={styles.backLink}>← Volver a la estantería</Link>
+      <Link to="/" style={styles.backLink}>← Volver a la estantería</Link>
       
       {/* Añadimos un fallback al índice por si acaso no está definido en el objeto */}
       <h3 style={{...styles.subtitle, color: decadeData.accentColor || '#d6bc8e'}}>

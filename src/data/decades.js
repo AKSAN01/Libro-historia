@@ -133,5 +133,19 @@ export const decades = [
       { icon: "🧩", title: "Paz Total", body: "Nuevos intentos de negociar con múltiples grupos armados restantes.", color: "#00A86B" },
       { icon: "🌐", title: "Desafíos modernos", body: "El país enfrenta retos climáticos, de migración y ciberseguridad.", color: "#003893" },
     ]
+  },
+  {
+    tag: "about",
+    index: 8,
+    period: "Sobre — Nosotros",
+    title: "Autores del Proyecto",
+    accentColor: "#285c4d",
+    description: "Conoce más sobre los creadores de esta experiencia interactiva.",
+    fact: "Somos el grupo de historia y cultura 020-81 de la Universidad Distrital Francisco José de Caldas.",
+    cards: [
+      { icon: "🎓", title: "Nuestro Grupo", body: "Grupo 020-81 de la Universidad Distrital. Estudiantes apasionados por rescatar y enseñar el patrimonio cultural.", color: "#285c4d" },
+      { icon: "💡", title: "Nuestra Misión", body: "Buscamos preservar la memoria histórica de Colombia mediante narrativas digitales y el uso de tecnologías web interactivas.", color: "#b8860b" },
+      { icon: "🏛️", title: "Universidad Distrital", body: "Llevando el aprendizaje más allá de las aulas para compartir el conocimiento con la comunidad académica y el público general.", color: "#1155cc" }
+    ]
   }
 ];
