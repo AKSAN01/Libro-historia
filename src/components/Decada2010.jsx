@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Libro.css'; 
 
-const Decada2010 = () => {
+const Decada2010 = ({ onIrALibreria }) => {
   const [pliegoActual, setPliegoActual] = useState(1);
-  const [subtituloActivo, setSubtituloActivo] = useState(-1);
-  const [introReproducida, setIntroReproducida] = useState(false);
+  const [subtituloActivo, setSubtituloActivo] = useState(0);
+  const [faseAudio, setFaseAudio] = useState('espera'); 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [textoVisible, setTextoVisible] = useState('');
   
   const audioRef = useRef(new Audio());
   const sfxRef = useRef(new Audio());
 
-  // Rutas de imágenes corregidas con el espacio en lugar del guion bajo
   const guionCuento = [
     { 
       autor: "Presentador (Introducción)", 
@@ -61,56 +62,152 @@ const Decada2010 = () => {
     }
   ];
 
+  // 1. MANEJO DE REPRODUCCIÓN
   useEffect(() => {
-    if (pliegoActual === 2) {
-      if (!introReproducida) {
-        sfxRef.current.pause();
-        audioRef.current.pause();
-        sfxRef.current.src = "/SFX10s/13.mp3"; 
-        sfxRef.current.play().catch(e => console.log("Intro bloqueada", e));
-        sfxRef.current.onended = () => {
-          setIntroReproducida(true);
-          setSubtituloActivo(0); 
-        };
-      } 
-      else if (subtituloActivo >= 0 && subtituloActivo < guionCuento.length) {
-        sfxRef.current.pause();
-        audioRef.current.pause();
+    const sfx = sfxRef.current;
+    const voz = audioRef.current;
 
-        sfxRef.current.src = guionCuento[subtituloActivo].sfx;
-        sfxRef.current.play().catch(e => console.log("SFX bloqueado", e));
-
-        sfxRef.current.onended = () => {
-          audioRef.current.src = `/audios 2010s/${subtituloActivo + 1}.mp3`;
-          audioRef.current.play().catch(e => console.log("Voz bloqueada", e));
-          
-          audioRef.current.onended = () => {
-            if (subtituloActivo < guionCuento.length - 1) {
-              setSubtituloActivo(prev => prev + 1);
-            } else {
-              setSubtituloActivo(-1); 
-            }
-          };
-        };
-      }
-    } else {
-      setIntroReproducida(false);
-      setSubtituloActivo(-1);
-      sfxRef.current.pause();
-      audioRef.current.pause();
-    }
-    
-    return () => { 
-      sfxRef.current.pause();
-      audioRef.current.pause();
+    const handleSfxEnded = () => {
+      if (faseAudio === 'intro') setFaseAudio('sfx');
+      else if (faseAudio === 'sfx') setFaseAudio('voz');
     };
-  }, [subtituloActivo, pliegoActual, introReproducida]);
 
+    const handleVozEnded = () => {
+      if (subtituloActivo < guionCuento.length - 1) {
+        setSubtituloActivo(prev => prev + 1);
+        setFaseAudio('sfx');
+      } else {
+        setIsPlaying(false);
+        setFaseAudio('espera');
+        setTextoVisible(''); 
+      }
+    };
+
+    sfx.addEventListener('ended', handleSfxEnded);
+    voz.addEventListener('ended', handleVozEnded);
+
+    return () => {
+      sfx.removeEventListener('ended', handleSfxEnded);
+      voz.removeEventListener('ended', handleVozEnded);
+    };
+  }, [faseAudio, subtituloActivo, guionCuento.length]);
+
+  // 2. ASIGNACIÓN DE FUENTES
   useEffect(() => {
-    if (pliegoActual !== 2) {
-      setSubtituloActivo(-1);
+    const sfx = sfxRef.current;
+    const voz = audioRef.current;
+    const capActual = guionCuento[subtituloActivo];
+
+    if (faseAudio === 'intro') {
+      const srcIntro = "/SFX10s/13.mp3";
+      if (!decodeURIComponent(sfx.src).endsWith(srcIntro)) sfx.src = srcIntro;
+    } 
+    else if (faseAudio === 'sfx' && capActual) {
+      if (!decodeURIComponent(sfx.src).endsWith(capActual.sfx)) sfx.src = capActual.sfx;
+    } 
+    else if (faseAudio === 'voz') {
+      const vozSrc = `/audios 2010s/${subtituloActivo + 1}.mp3`;
+      if (!decodeURIComponent(voz.src).endsWith(vozSrc)) voz.src = vozSrc;
     }
-  }, [pliegoActual]);
+  }, [faseAudio, subtituloActivo]);
+
+  // 3. CONTROL DE PLAY / PAUSE EFECTIVO
+  useEffect(() => {
+    const sfx = sfxRef.current;
+    const voz = audioRef.current;
+
+    if (!isPlaying || pliegoActual !== 2) {
+      sfx.pause();
+      voz.pause();
+      return;
+    }
+
+    if (faseAudio === 'intro' || faseAudio === 'sfx') {
+      sfx.play().catch(e => console.log("SFX Bloqueado:", e));
+      voz.pause();
+    } 
+    else if (faseAudio === 'voz') {
+      voz.play().catch(e => console.log("Voz Bloqueada:", e));
+      sfx.pause();
+    }
+  }, [isPlaying, faseAudio, pliegoActual, subtituloActivo]);
+
+  // 4. SUBTÍTULOS SINCRONIZADOS POR AUDIO
+  useEffect(() => {
+    if (faseAudio !== 'voz' || !isPlaying) {
+      if (faseAudio !== 'voz') setTextoVisible('');
+      return;
+    }
+
+    const voz = audioRef.current;
+    const textoCompleto = guionCuento[subtituloActivo].texto;
+
+    const empaquetar = (texto) => {
+      const palabras = texto.split(' ');
+      const bloques = [];
+      let bloque = '';
+      palabras.forEach(palabra => {
+        if ((bloque + palabra).length > 80) {
+          bloques.push(bloque.trim());
+          bloque = palabra + ' ';
+        } else {
+          bloque += palabra + ' ';
+        }
+      });
+      if (bloque) bloques.push(bloque.trim());
+      return bloques;
+    };
+
+    const bloquesTexto = empaquetar(textoCompleto);
+
+    const sincronizarSubtitulos = () => {
+      const progreso = voz.currentTime / voz.duration;
+      if (isNaN(progreso)) return;
+
+      const indice = Math.floor(progreso * bloquesTexto.length);
+      const bloqueActual = bloquesTexto[Math.min(indice, bloquesTexto.length - 1)];
+      
+      setTextoVisible(bloqueActual || '');
+    };
+
+    voz.addEventListener('timeupdate', sincronizarSubtitulos);
+    return () => voz.removeEventListener('timeupdate', sincronizarSubtitulos);
+  }, [faseAudio, isPlaying, subtituloActivo]);
+
+
+  // CONTROLES DE INTERFAZ
+  const togglePlay = () => setIsPlaying(!isPlaying);
+
+  const irAPagina2 = () => {
+    setPliegoActual(2);
+    setFaseAudio('intro');
+    setSubtituloActivo(0);
+    setIsPlaying(true);
+  };
+
+  const seleccionarCapitulo = (index) => {
+    sfxRef.current.pause();
+    audioRef.current.pause();
+    sfxRef.current.currentTime = 0;
+    audioRef.current.currentTime = 0;
+
+    setSubtituloActivo(index);
+    setFaseAudio('sfx');
+    setIsPlaying(true);
+  };
+
+  const reiniciarTransmision = () => {
+    sfxRef.current.pause();
+    audioRef.current.pause();
+    sfxRef.current.currentTime = 0;
+    audioRef.current.currentTime = 0;
+    sfxRef.current.src = "/SFX10s/13.mp3"; 
+    setSubtituloActivo(0);
+    setFaseAudio('intro');
+    setIsPlaying(true);
+  };
+
+  const capituloSeguro = guionCuento[subtituloActivo] || guionCuento[0];
 
   return (
     <div className="fondo-escritorio">
@@ -124,37 +221,44 @@ const Decada2010 = () => {
           <div className="marco-dorado-css marco-izquierdo">
             <div className="contenido-texto-libro">
               {pliegoActual === 1 ? (
-                <div className="animate-fade">
-                  <h1 className="titulo-principal">DÉCADA DEL 2010</h1>
-                  <h2 className="subtitulo-principal">El Juego de Espejos</h2>
-                  <h3 className="tema-principal">Sinopsis</h3>
-                  <p className="parrafo-estilo">
-                    Colombia entra a la década de 2010 cargando décadas de guerra, bombas, secuestros y miedo. Pero esta vez el conflicto ya no se veía igual.
-                  </p>
-                  <p className="parrafo-estilo">
-                    Ahora las discusiones no solo estaban en la selva o en los campos de combate… también aparecían en el Congreso, en las redes sociales, en las mesas familiares y en los titulares de televisión.
-                  </p>
-                  <p className="parrafo-estilo">
-                    Mientras unos exigían justicia y castigo, otros empezaban a hablar de reconciliación y paz. Y poco a poco, el país comenzó a dividirse no solo por las armas… sino también por la manera de entender la verdad.
-                  </p>
+                <div className="animate-fade layout-col">
+                  <div>
+                    <h1 className="titulo-principal">DÉCADA DEL 2010</h1>
+                    <h2 className="subtitulo-principal">El Juego de Espejos</h2>
+                    <h3 className="tema-principal">Sinopsis</h3>
+                  </div>
+                  
+                  {/* Este contenedor ahora es flexible y llenará el espacio limpiamente */}
+                  <div className="contenedor-sinopsis">
+                    <p className="parrafo-estilo">Colombia entra a la década de 2010 cargando décadas de guerra, bombas, secuestros y miedo. Pero esta vez el conflicto ya no se veía igual.</p>
+                    <p className="parrafo-estilo">Ahora las discusiones no solo estaban en la selva o en los campos de combate… también aparecían en el Congreso, en las redes sociales, en las mesas familiares y en los titulares de televisión.</p>
+                    <p className="parrafo-estilo">Mientras unos exigían justicia y castigo, otros empezaban a hablar de reconciliación y paz. Y poco a poco, el país comenzó a dividirse no solo por las armas… sino también por la manera de entender la verdad.</p>
+                  </div>
+
+                  <button 
+                    className="boton-libro btn-libreria" 
+                    onClick={() => onIrALibreria ? onIrALibreria() : alert("Redireccionando a la librería...")}
+                  >
+                    📚 IR A LA LIBRERÍA
+                  </button>
                 </div>
               ) : (
-                <div className="animate-fade layout-col layout-center">
-                  <h2 className="titulo-seccion">Crónica de una Nación</h2>
-                  <div className="caja-narracion">
-                    {subtituloActivo !== -1 ? (
-                      <div key={subtituloActivo} className="burbuja-texto animate-fade">
-                        <strong className="narrador-nombre">
-                          {guionCuento[subtituloActivo].autor}
-                        </strong>
-                        <p className="narrador-texto">
-                          {guionCuento[subtituloActivo].texto}
-                        </p>
-                      </div>
-                    ) : (
-                      <p className="emision-fin">La emisión ha finalizado.</p>
-                    )}
-                  </div>
+                <div className="animate-fade layout-col">
+                  <h2 className="titulo-seccion">MENÚ DE CANALES</h2>
+                  <ul className="lista-canales">
+                    {guionCuento.map((cap, index) => (
+                      <li key={index}>
+                        <button 
+                          className={`btn-canal ${subtituloActivo === index ? 'activo' : ''}`}
+                          onClick={() => seleccionarCapitulo(index)}
+                        >
+                          <span className="btn-canal-numero">CH {String(index + 1).padStart(2, '0')}</span>
+                          {/* Aquí quitamos el ".split" para que lea el nombre completo */}
+                          <span className="btn-canal-texto">{cap.autor}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </div>
@@ -171,67 +275,67 @@ const Decada2010 = () => {
                 <div className="animate-fade layout-col space-between">
                   <h2 className="titulo-seccion">HITOS CLAVE</h2>
                   <ul className="lista-eventos">
-                    <li>
-                      <strong className="evento-titulo">2011: Ley de Víctimas</strong>
-                      <p className="evento-desc">El Estado reconoce oficialmente a las víctimas. Ya no son solo cifras, tienen nombres y memorias.</p>
-                    </li>
-                    <li>
-                      <strong className="evento-titulo">2012: Inicio Diálogos</strong>
-                      <p className="evento-desc">Comienzan conversaciones formales con la guerrilla para buscar una salida política.</p>
-                    </li>
-                    <li>
-                      <strong className="evento-titulo">2016: Plebiscito (El Veredicto)</strong>
-                      <p className="evento-desc">Firma del acuerdo y sorpresiva victoria del "NO" en las urnas, demostrando la fractura social.</p>
-                    </li>
-                    <li className="no-linea">
-                      <strong className="evento-titulo">2017: Entrega de Armas</strong>
-                      <p className="evento-desc">Entrega histórica de fusiles a la misión verificadora de la ONU.</p>
-                    </li>
+                    <li><strong className="evento-titulo">2011: Ley de Víctimas</strong><p className="evento-desc">El Estado reconoce oficialmente a las víctimas. Ya no son solo cifras, tienen nombres y memorias.</p></li>
+                    <li><strong className="evento-titulo">2012: Inicio Diálogos</strong><p className="evento-desc">Comienzan conversaciones formales con la guerrilla para buscar una salida política.</p></li>
+                    <li><strong className="evento-titulo">2016: Plebiscito</strong><p className="evento-desc">Firma del acuerdo y sorpresiva victoria del "NO" en las urnas, demostrando la fractura social.</p></li>
+                    <li className="no-linea"><strong className="evento-titulo">2017: Entrega de Armas</strong><p className="evento-desc">Entrega histórica de fusiles a la misión verificadora de la ONU.</p></li>
                   </ul>
-                  <button className="boton-libro" onClick={() => setPliegoActual(2)}>
-                    SIGUIENTE PÁGINA →
+                  <button className="boton-libro" onClick={irAPagina2}>
+                    ENCENDER TELEVISOR →
                   </button>
                 </div>
               ) : (
-                <div className="animate-fade layout-col space-between">
+                <div className="animate-fade layout-col space-between tv-layout">
                   
                   {/* --- EL TELEVISOR DE NOTICIAS --- */}
-                  <div className="tv-contenedor">
-                    <div className="tv-marco">
-                      <div className="tv-pantalla">
-                        
-                        {/* Control de la imagen a mostrar */}
-                        {subtituloActivo !== -1 && guionCuento[subtituloActivo].imagen ? (
-                          <img 
-                            src={guionCuento[subtituloActivo].imagen} 
-                            alt={guionCuento[subtituloActivo].autor} 
-                            className="tv-imagen animate-fade" 
-                          />
-                        ) : (
-                          <div className="tv-ruido">
-                            <h2>NOTIHISTÓRICO</h2>
-                            <p>Señal Interrumpida...</p>
-                          </div>
-                        )}
+                  <div className="tv-retro-carcasa">
+                    <div className="tv-pantalla-container">
+                      <div className="tv-scanlines"></div>
+                      
+                      {capituloSeguro.imagen ? (
+                        <img src={capituloSeguro.imagen} alt={capituloSeguro.autor} className="tv-imagen-retro" />
+                      ) : (
+                        <div className="tv-ruido">
+                          <h2>NOTIHISTÓRICO</h2>
+                          <p>{faseAudio === 'intro' ? 'Iniciando emisión...' : 'Señal en Vivo...'}</p>
+                        </div>
+                      )}
 
-                        {/* Overlay estilo canal de noticias */}
-                        {subtituloActivo > 0 && subtituloActivo < guionCuento.length - 1 && (
-                          <div className="tv-overlay">
-                            <div className="tv-badge-vivo">🔴 EN VIVO</div>
-                            <div className="tv-banner-inferior">
-                              <span className="tv-ticker">ÚLTIMA HORA</span>
-                              <span className="tv-titular-texto">{guionCuento[subtituloActivo].autor}</span>
-                            </div>
+                      {subtituloActivo > 0 && subtituloActivo < guionCuento.length - 1 && (
+                        <div className="tv-overlay-noticias">
+                          <div className="tv-badge-vivo">🔴 EN VIVO</div>
+                          <div className="tv-banner-inferior">
+                            <span className="tv-ticker">ÚLTIMA HORA</span>
+                            <span className="tv-titular-texto">{capituloSeguro.autor}</span>
                           </div>
-                        )}
+                        </div>
+                      )}
 
+                      {faseAudio === 'voz' && textoVisible && (
+                        <div className="tv-subtitulos-box">
+                          <p className="tv-subtitulos-texto">{textoVisible}</p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="tv-controles">
+                      <div className="tv-altavoz">
+                        <div className="rejilla"></div><div className="rejilla"></div><div className="rejilla"></div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                        <button className="tv-btn-play" onClick={togglePlay}>
+                          {isPlaying ? '⏸ PAUSAR' : '▶ REPRODUCIR'}
+                        </button>
+                        <button className="tv-btn-play btn-restart" onClick={reiniciarTransmision}>
+                          🔄 REINICIAR
+                        </button>
                       </div>
                     </div>
                   </div>
                   {/* --- FIN DEL TELEVISOR --- */}
 
-                  <button className="boton-libro btn-volver" onClick={() => setPliegoActual(1)}>
-                    ← VOLVER
+                  <button className="boton-libro btn-volver" onClick={() => { setPliegoActual(1); setIsPlaying(false); }}>
+                    ← APAGAR TV Y VOLVER
                   </button>
                 </div>
               )}
