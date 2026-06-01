@@ -157,6 +157,7 @@ export const Decade80s = () => {
       cassetteLabel2="Colombia 1980–1989"
       cdLabel="CD Digital"
       themeClass="theme-80s"
+      tag="80s"
     />
   );
 };

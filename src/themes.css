@@ -53,6 +53,7 @@
   --soft-ink: #EAE6E1;
   --leather-brown: #DE6B35; /* Naranja urbano */
   --aged-gold: #B3572B;
+  --petrol-blue: #DE6B35; /* Naranja para contraste */
   
   --font-title: 'Anton', sans-serif;
   --font-subtitle: 'Anton', sans-serif;
@@ -60,6 +61,21 @@
 
   /* Patrón de puntos grandes (Halftone) */
   --paper-texture: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='2' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+}
+
+.theme-70s .notih-back-link {
+  color: white;
+}
+.theme-70s .notih-script-header {
+  background: var(--leather-brown);
+}
+.theme-70s .notih-script-headline {
+  color: var(--leather-brown);
+}
+.theme-70s .notih-script-para {
+  font-family: var(--font-text);
+  font-weight: normal;
+  font-size: 0.75rem;
 }
 
 /* --- 1980s: Terror / Tensión ---

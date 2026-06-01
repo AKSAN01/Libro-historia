@@ -1,4 +1,3 @@
-import './Decade70s.css';
 import audio1 from '../assets/70s/audio/70parte1.mp3';
 import audio2 from '../assets/70s/audio/70parte2.mp3';
 import audio3 from '../assets/70s/audio/70parte3.mp3';
@@ -114,6 +113,7 @@ export const Decade70s = () => {
       cassetteLabel2="Colombia 1970–1979"
       cdLabel="Audio"
       themeClass="theme-70s"
+      tag="70s"
     />
   );
 };

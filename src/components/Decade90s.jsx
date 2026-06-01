@@ -140,6 +140,7 @@ export const Decade90s = () => {
       cassetteLabel2="Colombia 1990–1999"
       cdLabel="Multimedia"
       themeClass="theme-90s"
+      tag="90s"
     />
   );
 };

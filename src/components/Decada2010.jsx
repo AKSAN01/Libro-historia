@@ -164,6 +164,7 @@ const Decada2010 = () => {
       cassetteLabel2="Colombia 2010–2019"
       cdLabel="Acuerdos de Paz"
       themeClass="theme-10s"
+      tag="10s"
     />
   );
 };

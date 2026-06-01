@@ -64,7 +64,8 @@ export const NotihistoricoLayout = ({
   cassetteLabel1 = "NOTIHISTÓRICO",
   cassetteLabel2 = "Colombia",
   cdLabel = "Interactiva",
-  themeClass = ""
+  themeClass = "",
+  tag = ""
 }) => {
   const [activeHito, setActiveHito]   = useState(null);
   const [isPlaying, setIsPlaying]     = useState(false);
@@ -251,9 +252,9 @@ export const NotihistoricoLayout = ({
   return (
     <motion.div
       className={`notih-root library-bg ${themeClass}`}
-      initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
-      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-      exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.5 } }}
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} // smooth easeOut
     >
       <div className="notih-book">
@@ -336,6 +337,9 @@ export const NotihistoricoLayout = ({
 
                       <button className="notih-panel-btn notih-panel-btn--nav" onClick={prevImage} disabled={!activeHito || tvState !== 'on'} aria-label="Imagen anterior">▲</button>
                       <button className="notih-panel-btn notih-panel-btn--nav" onClick={nextImage} disabled={!activeHito || tvState !== 'on'} aria-label="Imagen siguiente">▼</button>
+                      {tag && (
+                        <button className="notih-panel-btn notih-panel-btn--nav" onClick={() => navigate(`/minigame/${tag}`)} aria-label="Minijuego" title="Jugar Minijuego">?</button>
+                      )}
 
                       <button className="notih-panel-btn notih-panel-btn--wide" onClick={() => { emergencyStop(); navigate('/'); }}>Menu</button>
                       <button

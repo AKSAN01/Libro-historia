@@ -116,12 +116,6 @@ const HITOS_RIGHT = [
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade60s = () => {
-  const anim60s = {
-    initial: { opacity: 0, x: -100 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
-  };
-
   return (
     <NotihistoricoLayout 
       chapterIndex="1"
@@ -133,6 +127,7 @@ export const Decade60s = () => {
       cassetteLabel2="Colombia 1960–1969"
       cdLabel="Audio"
       themeClass="theme-60s"
+      tag="60s"
     />
   );
 };
