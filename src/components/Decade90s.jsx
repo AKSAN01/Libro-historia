@@ -1,9 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import './Decade90s.css';
-
-// ── Imports de audio ──────────────────────────────────────────────────────────
 import audio1 from '../assets/90s/audio/hito1.mp3';
 import audio2 from '../assets/90s/audio/hito2.mp3';
 import audio3 from '../assets/90s/audio/hito3.mp3';
@@ -131,17 +126,9 @@ const HITOS_RIGHT = [
   },
 ];
 
-const HITOS = [...HITOS_LEFT, ...HITOS_RIGHT];
-
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade90s = () => {
-  const anim90s = {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1, ease: "easeOut" }
-  };
-
   return (
     <NotihistoricoLayout 
       chapterIndex="4"
@@ -151,9 +138,8 @@ export const Decade90s = () => {
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1990–1999"
-      cdLabel="Interactiva 90s"
+      cdLabel="Multimedia"
       themeClass="theme-90s"
-      customAnim={anim90s}
     />
   );
 };

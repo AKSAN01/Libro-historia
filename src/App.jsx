@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
@@ -25,29 +24,4 @@ export default function App() {
       </AnimatePresence>
     </>
   );
-}
-
-const styles = {
-  bottomBar: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    paddingBottom: '15px',
-    zIndex: 1000,
-    pointerEvents: 'none',
-  },
-  periodLabel: {
-    backgroundColor: 'var(--leather-brown)',
-    color: 'var(--aged-gold)',
-    padding: '5px 20px',
-    borderRadius: '4px',
-    fontFamily: 'var(--font-text)',
-    fontSize: '0.9rem',
-    border: '1px solid #3d2618',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.5)',
-    letterSpacing: '0.05em',
-  }
-};
+}

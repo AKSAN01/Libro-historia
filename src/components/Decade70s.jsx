@@ -1,9 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import './Decade70s.css';
-
-// ── Imports de audio ──────────────────────────────────────────────────────────
 import audio1 from '../assets/70s/audio/70parte1.mp3';
 import audio2 from '../assets/70s/audio/70parte2.mp3';
 import audio3 from '../assets/70s/audio/70parte3.mp3';
@@ -108,12 +103,6 @@ const HITOS_RIGHT = [
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
 export const Decade70s = () => {
-  const anim70s = {
-    initial: { opacity: 0, scale: 1.1, filter: 'contrast(150%) hue-rotate(90deg)' },
-    animate: { opacity: 1, scale: 1, filter: 'contrast(100%) hue-rotate(0deg)' },
-    transition: { duration: 0.5, type: 'spring', damping: 10, stiffness: 100 }
-  };
-
   return (
     <NotihistoricoLayout 
       chapterIndex="2"
@@ -123,9 +112,8 @@ export const Decade70s = () => {
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1970–1979"
-      cdLabel="Interactiva 70s"
+      cdLabel="Audio"
       themeClass="theme-70s"
-      customAnim={anim70s}
     />
   );
 };

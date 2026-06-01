@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import './Decade90s.css';
 
 // ── Imports de audio ──────────────────────────────────────────────────────────
@@ -133,9 +131,8 @@ export const Decade60s = () => {
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1960–1969"
-      cdLabel="Interactiva 60s"
+      cdLabel="Audio"
       themeClass="theme-60s"
-      customAnim={anim60s}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { decades } from '../data/decades';
@@ -8,10 +8,15 @@ import { Decade90s } from './Decade90s'; // ← El componente personalizado del 
 import { Decade80s } from './Decade80s';
 import { Decade60s } from './Decade60s';
 import { Decade70s } from './Decade70s.jsx';
+import { Decada50s } from './Decada50s';
+import { Decada00s } from './Decada00s';
+import { Decada20s } from './Decada20s';
 
 export const DecadePage = () => {
   const { tag } = useParams();
-  // Buscamos la década, si no existe el tag, devolvemos null
+  
+  
+  
   const decadeData = decades.find(d => d.tag === tag);
 
   // Pantalla de error si la década no existe
@@ -26,66 +31,15 @@ export const DecadePage = () => {
     );
   }
 
+  if (tag === '50s') return <Decada50s />;
   if (tag === '60s') return <Decade60s />;
   if (tag === '70s') return <Decade70s />;
   if (tag === '80s') return <Decade80s />;
   if (tag === '90s') return <Decade90s />;
+  if (tag === '00s') return <Decada00s />;
+  if (tag === '20s') return <Decada20s />;
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
-  const [page, setPage] = useState(1);
-
-  if (!decadeData) return <div>Década no encontrada.</div>;
-
-  const getText = (a, b) => {
-    const full = (a || '') + ' ' + (b || '');
-    const mid = Math.ceil(full.length / 2);
-    return [full.slice(0, mid), full.slice(mid)];
-  };
-
-  const [col1, col2] = page === 1
-    ? getText(decadeData.intro1, decadeData.intro2)
-    : getText(decadeData.intro3, decadeData.intro4);
-
-  const LeftPage = () => (
-    <div style={styles.pageContent}>
-      <Link to="/" style={styles.backLink}>← Volver a la estantería</Link>
-      
-      {/* Añadimos un fallback al índice por si acaso no está definido en el objeto */}
-      <h3 style={{...styles.subtitle, color: decadeData.accentColor || '#d6bc8e'}}>
-        CAPÍTULO {decadeData.index !== undefined ? decadeData.index + 1 : '...'}
-      </h3>
-      
-      <h1 style={styles.title}>{decadeData.period}</h1>
-      <h2 style={styles.chapterTitle}>{decadeData.title}</h2>
-      
-      <p style={styles.description}>{decadeData.description}</p>
-      
-      {decadeData.fact && (
-        <div style={styles.factBox}>
-          <strong>Dato clave:</strong> {decadeData.fact}
-        </div>
-      )}
-    </div>
-  );
-
-  const RightPage = () => (
-    <div style={styles.pageContent}>
-      <Placeholder type="video" height="300px" text="Video documental de la década" />
-      
-      <div style={styles.cardsContainer}>
-        {/* Añadimos un check para asegurarnos que 'cards' existe */}
-        {decadeData.cards && decadeData.cards.map((card, idx) => (
-          <div key={idx} style={{...styles.card, borderLeftColor: card.color || '#d6bc8e'}}>
-            <span style={styles.cardIcon}>{card.icon}</span>
-            <div>
-              <h4 style={styles.cardTitle}>{card.title}</h4>
-              <p style={styles.cardBody}>{card.body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 
   const getAnimation = (tag) => {
     switch (tag) {
@@ -103,6 +57,46 @@ export const DecadePage = () => {
   
   const anim = getAnimation(tag);
 
+  // En lugar de declarar componentes durante el render, creamos variables JSX
+  const leftPageContent = (
+    <div style={styles.pageContent}>
+      <Link to="/" style={styles.backLink}>← Volver a la estantería</Link>
+      
+      <h3 style={{...styles.subtitle, color: decadeData.accentColor || '#d6bc8e'}}>
+        CAPÍTULO {decadeData.index !== undefined ? decadeData.index + 1 : '...'}
+      </h3>
+      
+      <h1 style={styles.title}>{decadeData.period}</h1>
+      <h2 style={styles.chapterTitle}>{decadeData.title}</h2>
+      
+      <p style={styles.description}>{decadeData.description}</p>
+      
+      {decadeData.fact && (
+        <div style={styles.factBox}>
+          <strong>Dato clave:</strong> {decadeData.fact}
+        </div>
+      )}
+    </div>
+  );
+
+  const rightPageContent = (
+    <div style={styles.pageContent}>
+      <Placeholder type="video" height="300px" text="Video documental de la década" />
+      
+      <div style={styles.cardsContainer}>
+        {decadeData.cards && decadeData.cards.map((card, idx) => (
+          <div key={idx} style={{...styles.card, borderLeftColor: card.color || '#d6bc8e'}}>
+            <span style={styles.cardIcon}>{card.icon}</span>
+            <div>
+              <h4 style={styles.cardTitle}>{card.title}</h4>
+              <p style={styles.cardBody}>{card.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <motion.div
       initial={anim.initial}
@@ -113,7 +107,7 @@ export const DecadePage = () => {
       style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}
     >
       <div className={`theme-${tag}`} style={{ flex: 1, display: 'flex' }}>
-        <BookLayout leftPage={<LeftPage />} rightPage={<RightPage />} />
+        <BookLayout leftPage={leftPageContent} rightPage={rightPageContent} />
       </div>
     </motion.div>
   );

@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import './Decade80s.css';
 
 // ── Imports de audio (Vite los procesa desde src/assets) ─────────────────────
@@ -137,7 +135,7 @@ const HITOS_RIGHT = [
   },
 ];
 
-const HITOS = [...HITOS_LEFT, ...HITOS_RIGHT];
+
 
 import { NotihistoricoLayout } from './NotihistoricoLayout';
 
@@ -157,9 +155,8 @@ export const Decade80s = () => {
       hitosRight={HITOS_RIGHT}
       cassetteLabel1="NOTIHISTÓRICO"
       cassetteLabel2="Colombia 1980–1989"
-      cdLabel="Interactiva 80s"
+      cdLabel="CD Digital"
       themeClass="theme-80s"
-      customAnim={anim80s}
     />
   );
 };

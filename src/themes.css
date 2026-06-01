@@ -33,6 +33,7 @@
   --soft-ink: #B8D8C3;   /* Verde claro sucio */
   --leather-brown: #4A7C59; /* Verde selva */
   --aged-gold: #7B907E;
+  --petrol-blue: #9FD0B0; /* Verde brillante para contraste */
   
   --font-title: 'Bebas Neue', sans-serif;
   --font-subtitle: 'Bebas Neue', sans-serif;
@@ -71,6 +72,7 @@
   --soft-ink: #E0E0E0;
   --leather-brown: #FF4D4D; /* Rojo brillante para contraste */
   --aged-gold: #FF6B6B;
+  --petrol-blue: #FF9999; /* Rojo claro / rosado para contraste en oscuro */
   
   --font-title: 'Oswald', sans-serif;
   --font-subtitle: 'Oswald', sans-serif;
@@ -109,6 +111,7 @@
   --soft-ink: #D8DFD6;
   --leather-brown: #9CC594; /* Verde brillante para contraste */
   --aged-gold: #B6CBB1;
+  --petrol-blue: #D8DFD6; /* Gris claro para visibilidad */
   
   --font-title: 'Barlow Condensed', sans-serif;
   --font-subtitle: 'Barlow Condensed', sans-serif;
@@ -147,6 +150,7 @@
   --soft-ink: #E5DDF5;
   --leather-brown: #B388FF; /* Violeta claro brillante */
   --aged-gold: #D0BFFF;
+  --petrol-blue: #E5DDF5; /* Violeta casi blanco para contraste */
   
   --font-title: 'Syne', sans-serif;
   --font-subtitle: 'Syne', sans-serif;

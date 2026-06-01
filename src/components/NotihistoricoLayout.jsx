@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './NotihistoricoLayout.css';
@@ -64,8 +64,7 @@ export const NotihistoricoLayout = ({
   cassetteLabel1 = "NOTIHISTÓRICO",
   cassetteLabel2 = "Colombia",
   cdLabel = "Interactiva",
-  themeClass = "",
-  customAnim = null
+  themeClass = ""
 }) => {
   const [activeHito, setActiveHito]   = useState(null);
   const [isPlaying, setIsPlaying]     = useState(false);
@@ -111,21 +110,50 @@ export const NotihistoricoLayout = ({
 
   const startAudio = (hito) => {
     stopAudioRaw();
-    const audio = new Audio(hito.audioSrc);
-    audio.volume = volume / 100;
-    currentAudioRef.current = audio;
-    audio.addEventListener('ended', () => {
-      isPlayingRef.current = false;
-      setIsPlaying(false);
-    });
-    audio.play()
-      .then(() => {
-        isPlayingRef.current = true;
-        setIsPlaying(true);
-      })
-      .catch((err) => {
-        console.warn('Audio no pudo reproducirse:', hito.audioSrc, err);
+
+    const playMainAudio = () => {
+      // Si el hito ya no está activo al terminar el SFX, no empezamos la voz
+      if (activeHitoRef.current && activeHitoRef.current.id !== hito.id) {
+        return;
+      }
+      
+      const audio = new Audio(hito.audioSrc);
+      audio.volume = volume / 100;
+      currentAudioRef.current = audio;
+      audio.addEventListener('ended', () => {
+        isPlayingRef.current = false;
+        setIsPlaying(false);
       });
+      audio.play()
+        .then(() => {
+          isPlayingRef.current = true;
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn('Audio no pudo reproducirse:', hito.audioSrc, err);
+        });
+    };
+
+    if (hito.sfxSrc) {
+      const sfx = new Audio(hito.sfxSrc);
+      sfx.volume = volume / 100;
+      currentAudioRef.current = sfx;
+      
+      sfx.addEventListener('ended', playMainAudio);
+      
+      sfx.play()
+        .then(() => {
+          isPlayingRef.current = true;
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn('SFX no pudo reproducirse', hito.sfxSrc, err);
+          // Fallback en caso de error, intentar con el audio principal
+          playMainAudio();
+        });
+    } else {
+      playMainAudio();
+    }
   };
 
   const triggerStatic = (callback) => {
@@ -223,10 +251,10 @@ export const NotihistoricoLayout = ({
   return (
     <motion.div
       className={`notih-root library-bg ${themeClass}`}
-      initial={customAnim ? customAnim.initial : { opacity: 0, filter: 'blur(10px)' }}
-      animate={customAnim ? customAnim.animate : { opacity: 1, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
+      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.5 } }}
-      transition={customAnim ? customAnim.transition : { duration: 0.8, ease: 'easeOut' }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} // smooth easeOut
     >
       <div className="notih-book">
 

@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export const Placeholder = ({ type = 'image', width = '100%', height = '200px', text = 'Espacio para contenido' }) => {
   return (
