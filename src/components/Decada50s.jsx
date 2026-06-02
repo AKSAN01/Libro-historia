@@ -18,10 +18,22 @@ import img2_3 from '../assets/50s/imagenes/img_6.png';
 import img2_4 from '../assets/50s/imagenes/img_7.png';
 import img2_5 from '../assets/50s/imagenes/img_8.png';
 import img2_6 from '../assets/50s/imagenes/img_9.png';
-//caida de rojas pinilla, paro cívico, junta militar, plebiscito, frente nacional
+//caida de rojas pinilla, paro cívico, junta militar,
 import img3_1 from '../assets/50s/imagenes/img_10.png';
 import img3_2 from '../assets/50s/imagenes/img_11.png';
 import img3_3 from '../assets/50s/imagenes/img_12.png';
+//violecia y represión estudiantil, golpe de opinión, televisión, paro cívico, junta militar, plebiscito, frente nacional
+import img4_1 from '../assets/50s/imagenes/img_19.png';
+import img4_2 from '../assets/50s/imagenes/img_20.png';
+import img4_3 from '../assets/50s/imagenes/img_21.png';
+import img4_4 from '../assets/50s/imagenes/img_22.png';
+//plebiscito y frente nacional
+import img6_1 from '../assets/50s/imagenes/img_13.png';
+import img6_2 from '../assets/50s/imagenes/img_14.png';
+import img6_3 from '../assets/50s/imagenes/img_15.png';
+import img6_4 from '../assets/50s/imagenes/img_16.png';
+import img6_5 from '../assets/50s/imagenes/img_17.png';
+import img6_6 from '../assets/50s/imagenes/img_18.png';
 
 const HITOS_LEFT = [
   {
@@ -100,7 +112,7 @@ const HITOS_RIGHT = [
     liberales El Tiempo y El Espectador, incendiadas por turbas enardecidas. La intolerancia política 
     amenaza con destruir las instituciones del país. El gobierno de Laureano Gómez parece haber perdido por completo el control. 
     La violencia que ardía en los campos colombianos llega finalmente al corazón de la capital.`,
-    images: [],
+    images: [img4_1, img4_2, img4_3, img4_4],
     audioSrc: '',
     sfxSrc: '',
     datoClave: 'El Tiempo y El Espectador en llamas',
@@ -115,7 +127,7 @@ const HITOS_RIGHT = [
   {
     id: 4, //no audios ni imágenes encontrados para este hito, por eso se dejan vacíos los arrays de imágenes y audios
     year: '1954',
-    title: 'Llega la televisión — y la represión estudiantil',
+    title: ' la televisión — yLlega la represión estudiantil',
     shortDesc: 'El 13 de junio Colombia estrena la TV; días después el Ejército reprime y mata a universitarios.',
     guion: `El 13 de junio de 1954, el gobierno militar le entrega al país un milagro moderno: llega la televisión a Colombia. 
     En blanco y negro, las familias se reúnen alrededor de esta caja mágica. El Estado busca educar, entretener y consolidar su
@@ -145,8 +157,8 @@ const HITOS_RIGHT = [
     Liberales y conservadores acuerdan perdonarse, alternarse la presidencia cada cuatro años y repartirse el poder 
     institucional por mitades exactas para acabar de una vez por todas con la violencia partidista. El pacto trae calma a las ciudades, 
     pero en las montañas más alejadas, campesinos e intelectuales excluidos comienzan a organizarse en silencio… sentando las bases de una nueva guerra.`,
-    images: [],
-    audioSrc: 'audio6',
+    images: [img6_1, img6_2, img6_3, img6_4, img6_5, img6_6],
+    audioSrc: audio6,
     sfxSrc: '',
     datoClave: 'Primer voto femenino en la historia de Colombia',
     fichaLineas: [
