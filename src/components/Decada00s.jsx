@@ -1,4 +1,3 @@
-import './Decada00s.css';
 
 // ── Imports de audio ──────────
  import audio1 from '../assets/00s/audio/hito1.mp3';
