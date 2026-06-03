@@ -1,20 +1,33 @@
-//import './Decada00s.css';
+import './Decada00s.css';
 
-// ── Imports de audio (TEMPORALMENTE COMENTADOS) ──────────
-// import audio1 from '../assets/2000s/audio/hito1.mp3';
-// import audio2 from '../assets/2000s/audio/hito2.mp3';
-// import audio3 from '../assets/2000s/audio/hito3.mp3';
-// import audio4 from '../assets/2000s/audio/hito4.mp3';
-// import audio5 from '../assets/2000s/audio/hito5.mp3';
-// import audio6 from '../assets/2000s/audio/hito6.mp3';
-// import audio7 from '../assets/2000s/audio/hito7.mp3';
+// ── Imports de audio ──────────
+ import audio1 from '../assets/00s/audio/hito1.mp3';
+ import audio2 from '../assets/00s/audio/hito2.mp3';
+ import audio3 from '../assets/00s/audio/hito3.mp3';
+ import audio4 from '../assets/00s/audio/hito4.mp3';
+ import audio5 from '../assets/00s/audio/hito5.mp3';
+ import audio6 from '../assets/00s/audio/hito6.mp3';
+ import audio7 from '../assets/00s/audio/hito7.mp3';
 
-// ── Imports de imágenes (TEMPORALMENTE COMENTADOS) ────────
-// import imgPlanColombia from '../assets/2000s/imagenes/plan_colombia.png';
-// import imgUribe from '../assets/2000s/imagenes/uribe.png';
-// import imgSecuestro from '../assets/2000s/imagenes/secuestro.png';
-// import imgOperacionJaque from '../assets/2000s/imagenes/operacion_jaque.png';
-// import imgFalsosPositivos from '../assets/2000s/imagenes/falsos_positivos.png';
+// ── Imports de imágenes ────────
+import imgAcuerdo2 from '../assets/00s/imagenes/Acuerdo 2.png';
+import imgPublicidadPC from '../assets/00s/imagenes/Publicidad P.C.png';
+import imgImplementacionPC from '../assets/00s/imagenes/Implementacion PC.png';
+import imgAsesoriaEEUU from '../assets/00s/imagenes/Asesoria EEUU.png';
+import imgFumigacion from '../assets/00s/imagenes/Fumigacion.png';
+import imgPosesionUribe from '../assets/00s/imagenes/Posesion Uribe.png';
+import imgNuevasPoliticas from '../assets/00s/imagenes/Nuevas politicas.png';
+import imgDiscursoUribe from '../assets/00s/imagenes/Discurso Uribe.png';
+import imgSecuestro from '../assets/00s/imagenes/Secuestro.png';
+import imgCarreterasVacias from '../assets/00s/imagenes/Carreteras vacias.png';
+import imgPruebasSupervivencia from '../assets/00s/imagenes/Secuestrados y pruebas de supervivencia en televisión.png';
+import imgOperacionJaque1 from '../assets/00s/imagenes/Operacion Jaque.png';
+import imgOperacionJaque2 from '../assets/00s/imagenes/Operacion Jaque 2.png';
+import imgNoticiaIngrid from '../assets/00s/imagenes/Noticia Ingrid Betancourt.png';
+import imgFalsosPositivos from '../assets/00s/imagenes/Falsos Positivos.png';
+import imgProtestaDDHH from '../assets/00s/imagenes/Protesta derechos humanos.png';
+import imgDenunciasSombra from '../assets/00s/imagenes/Denuncias por falsos positivos y sombra institucional.png';
+import imgNarcotrafico from '../assets/00s/imagenes/Narcotrafico.png';
 
 // ── DATOS DE LOS HITOS (2000s) ───────────────────────────
 const HITOS_LEFT = [
@@ -36,7 +49,7 @@ Las guerrillas amplían su presencia territorial. Los secuestros aumentan. Y muc
 
 Mientras la violencia continúa creciendo, millones de colombianos empiezan a sentir que el Estado está perdiendo el control de amplias regiones del país.`,
     images: [],
-    audioSrc: null,
+    audioSrc: audio1,
     datoClave: '2000 · Crisis · Violencia · Inicio del milenio',
     color: '#2c3e50',
   },
@@ -59,8 +72,8 @@ Desde el exterior, el conflicto colombiano empieza a verse como parte de la llam
 Sin embargo, dentro del país el debate crece rápidamente.
 
 Mientras algunos sectores consideran el plan una medida urgente para recuperar el control territorial, otros advierten sobre el aumento de la militarización y las consecuencias que la guerra sigue dejando sobre la población civil.`,
-    images: [],
-    audioSrc: null,
+    images:  [imgAcuerdo2, imgPublicidadPC, imgImplementacionPC, imgAsesoriaEEUU, imgFumigacion],
+    audioSrc: audio2,
     datoClave: '2000 · Plan Colombia · Guerra contra las drogas · Cooperación internacional',
     color: '#1a5276',
   },
@@ -83,8 +96,8 @@ Para muchos colombianos, la sensación de seguridad comienza lentamente a regres
 Sin embargo, la intensificación de la guerra también hace que el conflicto se vuelva más visible y cotidiano.
 
 La confrontación ya no parecía lejana. Ahora ocupaba titulares diarios, transmisiones en vivo y conversaciones constantes dentro del país.`,
-    images: [],
-    audioSrc: null,
+    images: [imgPosesionUribe, imgNuevasPoliticas, imgDiscursoUribe],
+    audioSrc: audio3,
     datoClave: '2002 · Álvaro Uribe · Seguridad Democrática · Ofensiva militar',
     color: '#1e8449',
   },
@@ -108,8 +121,8 @@ Las llamadas pruebas de supervivencia comienzan a difundirse en televisión y pa
 La guerra ya no parecía ocurrir únicamente en regiones apartadas.
 
 Ahora entraba directamente a los hogares a través de las noticias, las fotografías y los testimonios de familias que esperaban durante años el regreso de sus seres queridos.`,
-    images: [],
-    audioSrc: null,
+    images: [imgSecuestro, imgCarreterasVacias, imgPruebasSupervivencia],
+    audioSrc: audio4,
     datoClave: 'Secuestro · Pruebas de supervivencia · Dolor colectivo',
     color: '#7e5109',
   },
@@ -132,8 +145,8 @@ La noticia genera impacto internacional inmediato.
 Para el gobierno, la operación representa una demostración de la capacidad del Estado para debilitar militarmente a la guerrilla.
 
 Y para gran parte de la sociedad colombiana, simboliza la esperanza de que el conflicto pudiera comenzar a cambiar de rumbo.`,
-    images: [],
-    audioSrc: null,
+    images: [imgOperacionJaque1, imgOperacionJaque2, imgNoticiaIngrid],
+    audioSrc: audio5,
     datoClave: '2008 · Operación Jaque · Rescate · Ingrid Betancourt',
     color: '#0e6655',
   },
@@ -154,8 +167,8 @@ El escándalo de los llamados 'falsos positivos' revela una de las etapas más o
 La guerra no solo estaba dejando víctimas en medio de los enfrentamientos armados.
 
 También comenzaba a afectar profundamente la confianza de muchos ciudadanos en las instituciones del país.`,
-    images: [],
-    audioSrc: null,
+    images: [imgFalsosPositivos, imgProtestaDDHH, imgDenunciasSombra],
+    audioSrc: audio6,
     datoClave: 'Falsos positivos · Ejecuciones extrajudiciales · Crisis humanitaria',
     color: '#641e16',
   },
@@ -180,8 +193,8 @@ Sin embargo, en medio del cansancio, del miedo y de los años de confrontación,
 Hasta aquí esta emisión especial de Notihistórico, el noticiero de la historia.
 
 Muy buenas noches, Colombia.`,
-    images: [],
-    audioSrc: null,
+    images: [imgNarcotrafico],
+    audioSrc: audio7,
     datoClave: 'Fin década · Guerrillas debilitadas · ¿Paz posible?',
     color: '#2c3e50',
   },
