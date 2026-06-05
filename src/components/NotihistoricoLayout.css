@@ -67,10 +67,13 @@
 .notih-page-content {
   flex: 1; min-height: 0;
   padding: 20px 24px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative; z-index: 2;
   display: flex; flex-direction: column; gap: 10px;
 }
+.notih-page-content::-webkit-scrollbar { width: 4px; }
+.notih-page-content::-webkit-scrollbar-thumb { background: rgba(90,62,43,0.25); border-radius: 2px; }
 .notih-spine-shadow { position: absolute; top: 0; bottom: 0; width: 40px; z-index: 3; pointer-events: none; }
 .notih-spine-shadow--left  { right: 0; background: linear-gradient(to left,  rgba(0,0,0,0.2) 0%, transparent 100%); }
 .notih-spine-shadow--right { left:  0; background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 100%); }
@@ -279,18 +282,26 @@
    FICHA BIBLIOGRÁFICA
    ═══════════════════════════════════════════════════════════════════ */
 .notih-ficha {
-  flex-shrink: 0; position: relative; margin-top: auto;
+  flex-shrink: 0; position: relative; margin-top: 8px;
   background: #f5ecd8; border: 1px solid #c8a86a;
   border-radius: 2px 6px 2px 2px;
   box-shadow: 2px 3px 8px rgba(0,0,0,0.15);
+  overflow: hidden;
 }
+.notih-ficha-body {
+  padding: 7px 12px;
+  overflow-y: auto;
+  max-height: 160px;
+}
+.notih-ficha-body::-webkit-scrollbar { width: 3px; }
+.notih-ficha-body::-webkit-scrollbar-thumb { background: rgba(180,140,80,0.4); border-radius: 2px; }
 .notih-ficha-tab {
   position: absolute; top: -17px; left: 12px;
   background: #c8a86a; color: #3a2810;
   font-family: var(--font-text); font-size: 0.5rem; font-weight: 800;
   letter-spacing: 0.18em; padding: 3px 10px; border-radius: 3px 3px 0 0;
 }
-.notih-ficha-body { padding: 7px 12px; }
+
 .notih-ficha-header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #c8a86a; padding-bottom: 3px; margin-bottom: 4px; }
 .notih-ficha-ref   { font-family: var(--font-text); font-size: 0.58rem; font-weight: 700; color: #5a3e1e; letter-spacing: 0.06em; }
 .notih-ficha-sello { font-family: var(--font-text); font-size: 0.46rem; font-weight: 800; color: #7a1a1a; border: 1px solid #7a1a1a; padding: 1px 5px; border-radius: 2px; opacity: 0.7; }

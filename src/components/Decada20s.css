@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DECADA20S.CSS — Capítulo 7 | Era del Streaming 2020–2026
+   Override: iPhone en HORIZONTAL (landscape) como ver video en YouTube
+   Prefijo: .theme-20s
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. ESCONDER todo lo que es del TV viejo ── */
+.theme-20s .notih-tv-legs,
+.theme-20s .notih-tv-antenna,
+.theme-20s .notih-tv-buttons,
+.theme-20s .notih-tv-speaker-left,
+.theme-20s .notih-tv-speaker-right,
+.theme-20s .notih-tv-knobs,
+.theme-20s .notih-tv-channel,
+.theme-20s .notih-tv-volume {
+  display: none !important;
+}
+
+/* ── 2. CARCASA — iPhone horizontal ── */
+.theme-20s .notih-tv {
+  width: 400px !important;
+  min-width: 400px !important;
+  max-width: 400px !important;
+  height: 210px !important;
+  min-height: 210px !important;
+  border-radius: 28px !important;
+  background: #1a1a1a !important;
+  border: none !important;
+  box-shadow:
+    0 0 0 1.5px #3a3a3a,
+    0 0 0 3px #111,
+    0 0 0 4.5px #2e2e2e,
+    4px 8px 28px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── 3. DYNAMIC ISLAND — en horizontal queda lado izquierdo ── */
+.theme-20s .notih-tv::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 64px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 0 0 1px #1a1a1a;
+}
+
+/* ── 4. BOTÓN POWER (arriba en landscape) ── */
+.theme-20s .notih-tv::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: 80px;
+  height: 3px;
+  width: 52px;
+  background: #2a2a2a;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -1px 0 #444;
+}
+
+/* ── 5. BOTONES VOLUMEN (abajo en landscape) via brand ── */
+.theme-20s .notih-tv-brand {
+  position: absolute !important;
+  bottom: -3px !important;
+  left: 80px !important;
+  height: 3px !important;
+  width: 32px !important;
+  background: #2a2a2a !important;
+  border-radius: 0 0 3px 3px !important;
+  box-shadow:
+    42px 0 0 #2a2a2a,
+    78px 0 0 #2a2a2a !important;
+  font-size: 0 !important;
+  color: transparent !important;
+  text-indent: -9999px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+/* ── 6. PANTALLA — ocupa todo el cuerpo ── */
+.theme-20s .notih-tv-screen {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  filter: none !important;
+  aspect-ratio: unset !important;
+}
+
+/* Sin scanlines ni CRT */
+.theme-20s .notih-tv-screen::before,
+.theme-20s .notih-tv-screen::after {
+  display: none !important;
+}
+
+/* ── 7. IMÁGENES/VIDEO dentro de pantalla ── */
+.theme-20s .notih-tv-screen img,
+.theme-20s .notih-tv-screen video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 26px !important;
+}
+
+/* ── 8. PLACEHOLDER idle ── */
+.theme-20s .notih-tv-placeholder,
+.theme-20s .notih-tv-idle {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #080808 !important;
+  border-radius: 26px !important;
+  gap: 10px !important;
+  font-size: 9px !important;
+  color: #444 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  font-family: -apple-system, 'SF Pro', sans-serif !important;
+}
+
+.theme-20s .notih-tv-placeholder::after,
+.theme-20s .notih-tv-idle::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #53fc18;
+  animation: d20-pulse 2s ease-in-out infinite;
+}
+
+@keyframes d20-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.3); }
+}
+
+/* ── 9. BARRA HOME horizontal (lado derecho en landscape) ── */
+.theme-20s .notih-tv-frame::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 64px;
+  width: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ── 10. WRAP — centrado con espacio vertical ── */
+.theme-20s .notih-tv-wrap,
+.theme-20s .notih-tv-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 20px 0 !important;
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── 11. BARRA DE VOLUMEN — verde streaming ── */
+.theme-20s .notih-volume-bar,
+.theme-20s .notih-volume-fill {
+  background: #53fc18 !important;
+  box-shadow: 0 0 8px rgba(83, 252, 24, 0.35) !important;
+}
+
+.theme-20s .notih-volume-track {
+  background: #141414 !important;
+  border: 1px solid #222 !important;
+}

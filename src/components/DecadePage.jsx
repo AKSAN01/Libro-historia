@@ -10,7 +10,7 @@ import { Decade60s } from './Decade60s';
 import { Decade70s } from './Decade70s.jsx';
 import { Decada50s } from './Decada50s';
 import { Decada00s } from './Decada00s';
-import { Decada20s } from './Decada20s';
+import { Decade20s } from './Decada2020s';
 
 export const DecadePage = () => {
   const { tag } = useParams();
@@ -37,7 +37,7 @@ export const DecadePage = () => {
   if (tag === '80s') return <Decade80s />;
   if (tag === '90s') return <Decade90s />;
   if (tag === '00s') return <Decada00s />;
-  if (tag === '20s') return <Decada20s />;
+  if (tag === '20s') return <Decade20s />;
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
 

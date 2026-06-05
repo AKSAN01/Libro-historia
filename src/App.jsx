@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
 import { DecadePage } from './components/DecadePage';
 import Decada2010 from './components/Decada2010';
+import { Decada20s } from './components/Decada20s';
 import MinigameRouter from './minigames/MinigameRouter';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           
           {/* Ruta corregida para coincidir con el tag "10s" de tu archivo de datos */}
           <Route path="/decade/10s" element={<Decada2010 />} />
+          <Route path="/decade/20s" element={<Decada20s />} />
           
           {/* Ruta para minijuegos */}
           <Route path="/minigame/:tag" element={<MinigameRouter />} />
@@ -28,4 +30,4 @@ export default function App() {
       </AnimatePresence>
     </>
   );
-}
+}
