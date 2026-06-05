@@ -1,0 +1,1075 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DECADE20S.CSS — Capítulo 7 | 2020–2026
+   Concepto: MacBook con app estilo Kick/Twitch — Era del streaming
+   Mobile-first, fluid sizing, dvh support
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── ROOT ─────────────────────────────────────────────────────────── */
+.d20-root {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--soft-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6px, 1.5vw, 16px);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.d20-book {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  background-color: var(--leather-brown);
+  border-radius: 8px;
+  padding: clamp(5px, 1vw, 10px);
+  box-shadow: var(--book-shadow);
+  gap: 3px;
+  box-sizing: border-box;
+}
+
+/* ── PÁGINAS ──────────────────────────────────────────────────────── */
+.d20-page {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--aged-paper);
+  background-image: var(--paper-texture);
+  box-shadow: var(--page-shadow);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.d20-page-content {
+  flex: 1;
+  min-height: 0;
+  padding: clamp(10px, 1.8vw, 22px) clamp(12px, 2.2vw, 26px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vh, 11px);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.d20-page-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.d20-page-content::-webkit-scrollbar-thumb {
+  background: rgba(90,62,43,0.2);
+  border-radius: 2px;
+}
+
+.d20-spine-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.d20-spine-shadow--left {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.18) 0%, transparent 100%);
+}
+
+.d20-spine-shadow--right {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 100%);
+}
+
+/* ── ENCABEZADO ───────────────────────────────────────────────────── */
+.d20-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.d20-back-link {
+  font-family: var(--font-text);
+  font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+  font-weight: 700;
+  color: var(--petrol-blue);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 3px;
+  transition: opacity 0.2s;
+}
+
+.d20-back-link:hover {
+  opacity: 0.6;
+}
+
+.d20-chapter-label {
+  font-family: var(--font-text);
+  font-size: clamp(0.52rem, 0.95vw, 0.62rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--aged-gold);
+}
+
+.d20-chapter-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.2rem, 3.2vw, 1.8rem);
+  color: var(--soft-ink);
+  line-height: 1;
+  margin: 0;
+}
+
+.d20-chapter-subtitle {
+  font-family: var(--font-subtitle);
+  font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+  color: var(--leather-brown);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MACBOOK — Carcasa
+   ═══════════════════════════════════════════════════════════════════ */
+.d20-mac-wrap {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.d20-mac {
+  width: 100%;
+  max-width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tapa / pantalla */
+.d20-mac-lid {
+  width: 100%;
+  background: linear-gradient(170deg, #3a3a3c 0%, #2c2c2e 40%, #1c1c1e 100%);
+  border-radius: 10px 10px 4px 4px;
+  padding: 8px 8px 4px;
+  box-shadow:
+    0 -1px 0 rgba(255,255,255,0.12) inset,
+    0 8px 32px rgba(0,0,0,0.6),
+    0 2px 8px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+/* Notch/cámara */
+.d20-mac-camera {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1c;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+  z-index: 2;
+}
+
+.d20-mac-camera::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(80,160,255,0.3);
+}
+
+/* Pantalla interior — App de streaming */
+.d20-mac-screen {
+  background: #0e0e10;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.8);
+}
+
+/* Bisagra */
+.d20-mac-hinge {
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to bottom, #1c1c1e, #2c2c2e);
+  border-radius: 0 0 2px 2px;
+  position: relative;
+}
+
+.d20-mac-hinge::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* Base/teclado */
+.d20-mac-base {
+  width: 108%;
+  background: linear-gradient(to bottom, #2c2c2e 0%, #3a3a3c 50%, #2a2a2c 100%);
+  border-radius: 0 0 8px 8px;
+  padding: 6px 10px 4px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 -1px 0 rgba(255,255,255,0.06) inset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Teclado ilustrativo */
+.d20-mac-keyboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 2px;
+  opacity: 0.4;
+}
+
+.d20-mac-key {
+  height: 5px;
+  background: linear-gradient(to bottom, #4a4a4c, #3a3a3c);
+  border-radius: 1px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+
+.d20-mac-key--wide { grid-column: span 2; }
+.d20-mac-key--space { grid-column: span 5; }
+
+/* Trackpad */
+.d20-mac-trackpad {
+  width: 35%;
+  height: 10px;
+  background: linear-gradient(to bottom, #3a3a3c, #333335);
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.04);
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   APP DE STREAMING — dentro de la pantalla del Mac
+   Estilo Kick/Twitch: dark, púrpura/verde, UI gaming
+   ═══════════════════════════════════════════════════════════════════ */
+.d20-app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0e0e10;
+  font-family: 'Courier New', 'Consolas', monospace;
+}
+
+/* Barra superior de la app */
+.d20-app-bar {
+  height: 18px;
+  background: #18181b;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.d20-app-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.d20-app-dot--r { background: #ff5f57; }
+.d20-app-dot--y { background: #febc2e; }
+.d20-app-dot--g { background: #28c840; }
+
+.d20-app-url {
+  flex: 1;
+  height: 10px;
+  background: #0e0e10;
+  border-radius: 2px;
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.d20-app-url-text {
+  font-size: 0.32rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+
+/* Logo HISTOSTREAM */
+.d20-app-logo {
+  font-size: 0.38rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.d20-app-logo-hist { color: #fff; }
+.d20-app-logo-stream { color: #53fc18; } /* verde Kick */
+
+/* Navbar de la app */
+.d20-app-nav {
+  height: 14px;
+  background: #18181b;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.d20-app-nav-item {
+  font-size: 0.3rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.15s;
+}
+
+.d20-app-nav-item--active {
+  color: #53fc18;
+  border-bottom-color: #53fc18;
+}
+
+.d20-app-nav-live {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.d20-app-nav-live-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff4040;
+  animation: d20-livePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes d20-livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.d20-app-nav-live-text {
+  font-size: 0.3rem;
+  font-weight: 900;
+  color: #ff4040;
+  letter-spacing: 0.1em;
+}
+
+.d20-app-nav-viewers {
+  font-size: 0.28rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+
+/* Cuerpo principal: stream + chat */
+.d20-app-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Zona del stream / video */
+.d20-stream-zone {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  position: relative;
+}
+
+.d20-stream-screen {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Imagen activa del hito */
+.d20-stream-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay apagado */
+.d20-stream-off {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: radial-gradient(ellipse at 50% 40%, #0a0a14, #000);
+}
+
+.d20-stream-off-icon {
+  font-size: 1.1rem;
+  opacity: 0.2;
+}
+
+.d20-stream-off-text {
+  font-size: 0.32rem;
+  color: rgba(83,252,24,0.2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Estática */
+.d20-stream-static {
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: cover;
+  animation: d20-staticAnim 0.05s steps(1) infinite;
+  opacity: 0.6;
+}
+
+@keyframes d20-staticAnim {
+  0% { background-position: 0 0; }
+  25% { background-position: -8px 4px; }
+  50% { background-position: 4px -8px; }
+  75% { background-position: -4px 8px; }
+  100% { background-position: 0 0; }
+}
+
+/* HUD del stream */
+.d20-stream-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.d20-stream-badge-live {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: #ff4040;
+  color: #fff;
+  font-size: 0.28rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.d20-stream-badge-hd {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.24rem;
+  font-weight: 700;
+  padding: 1px 3px;
+  border-radius: 1px;
+  letter-spacing: 0.08em;
+}
+
+.d20-stream-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  padding: 6px 4px 3px;
+}
+
+.d20-stream-caption-year {
+  font-size: 0.28rem;
+  font-weight: 900;
+  color: #53fc18;
+  letter-spacing: 0.12em;
+  display: block;
+}
+
+.d20-stream-caption-title {
+  font-size: 0.35rem;
+  color: rgba(255,255,255,0.9);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Barra debajo del stream: controles */
+.d20-stream-controls {
+  height: 16px;
+  background: #18181b;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.d20-ctrl-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.45rem;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.d20-ctrl-btn:hover:not(:disabled) {
+  color: #53fc18;
+}
+
+.d20-ctrl-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.d20-ctrl-btn--play {
+  color: #53fc18;
+  font-size: 0.5rem;
+}
+
+.d20-ctrl-btn--stop {
+  color: #ff4040;
+}
+
+/* Slider de volumen dentro de controles */
+.d20-ctrl-vol {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 2px;
+}
+
+.d20-ctrl-vol-icon {
+  font-size: 0.38rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.d20-ctrl-vol-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: linear-gradient(to right, #53fc18 0%, #53fc18 var(--vol-pct, 100%), #333 var(--vol-pct, 100%), #333 100%);
+  border-radius: 2px;
+}
+
+.d20-ctrl-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.d20-ctrl-img-nav {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.d20-ctrl-dots {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.d20-ctrl-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.2s;
+}
+
+.d20-ctrl-dot--active {
+  background: #53fc18;
+}
+
+/* ── CHAT ──────────────────────────────────────────────────────────── */
+.d20-chat {
+  width: 28%;
+  flex-shrink: 0;
+  background: #18181b;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.d20-chat-header {
+  height: 14px;
+  background: #0e0e10;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.d20-chat-title {
+  font-size: 0.3rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+
+.d20-chat-count {
+  margin-left: auto;
+  font-size: 0.26rem;
+  color: rgba(83,252,24,0.5);
+}
+
+.d20-chat-messages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.d20-chat-messages::-webkit-scrollbar {
+  width: 2px;
+}
+
+.d20-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(83,252,24,0.15);
+  border-radius: 1px;
+}
+
+.d20-chat-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.d20-chat-user {
+  font-size: 0.26rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.d20-chat-text {
+  font-size: 0.26rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.d20-chat-badge {
+  display: inline-block;
+  font-size: 0.2rem;
+  background: rgba(83,252,24,0.15);
+  color: #53fc18;
+  padding: 0 2px;
+  border-radius: 1px;
+  margin-right: 2px;
+  font-weight: 700;
+}
+
+.d20-chat-input {
+  height: 16px;
+  background: #0e0e10;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.d20-chat-input-box {
+  flex: 1;
+  height: 10px;
+  background: #262626;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+}
+
+.d20-chat-input-text {
+  font-size: 0.25rem;
+  color: rgba(255,255,255,0.18);
+}
+
+.d20-chat-send {
+  height: 10px;
+  padding: 0 4px;
+  background: #53fc18;
+  border-radius: 2px;
+  font-size: 0.25rem;
+  font-weight: 900;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HITOS — Botones
+   ═══════════════════════════════════════════════════════════════════ */
+.d20-hitos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.d20-hito-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  min-height: 44px;
+  border: 1px solid rgba(90,62,43,0.18);
+  border-left: 3px solid var(--hito-color, var(--petrol-blue));
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  background: rgba(255,255,255,0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.06);
+  transition: background 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.d20-hito-btn:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.d20-hito-btn--on {
+  background: rgba(83,252,24,0.07);
+  border-left-color: #53fc18;
+}
+
+.d20-hito-btn--paused {
+  background: rgba(255,120,0,0.07);
+  border-left-color: #ff7800;
+}
+
+.d20-hito-num {
+  font-family: var(--font-subtitle);
+  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
+  font-weight: 700;
+  color: var(--hito-color);
+  opacity: 0.65;
+  flex-shrink: 0;
+  min-width: 20px;
+}
+
+.d20-hito-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.d20-hito-year {
+  font-family: var(--font-text);
+  font-size: clamp(0.48rem, 0.88vw, 0.56rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--aged-gold);
+}
+
+.d20-hito-title {
+  font-family: var(--font-subtitle);
+  font-size: clamp(0.72rem, 1.25vw, 0.85rem);
+  font-weight: 600;
+  color: var(--soft-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.d20-hito-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  background: rgba(0,0,0,0.08);
+  color: rgba(90,62,43,0.25);
+  border: 1.5px solid rgba(90,62,43,0.12);
+  transition: all 0.2s;
+}
+
+.d20-hito-icon--on {
+  background: #53fc18;
+  color: #000;
+  border-color: #30c000;
+  box-shadow: 0 0 8px rgba(83,252,24,0.4);
+}
+
+.d20-hito-icon--pause {
+  background: #ff7800;
+  color: #fff;
+  border-color: #cc5500;
+  box-shadow: 0 0 8px rgba(255,120,0,0.4);
+}
+
+/* ── FICHA ─────────────────────────────────────────────────────────── */
+.d20-ficha {
+  flex-shrink: 0;
+  position: relative;
+  margin-top: 6px;
+  background: #f5ecd8;
+  border: 1px solid #c8a86a;
+  border-radius: 2px 6px 2px 2px;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.1);
+}
+
+.d20-ficha-tab {
+  position: absolute;
+  top: -16px;
+  left: 12px;
+  background: #c8a86a;
+  color: #3a2810;
+  font-family: var(--font-text);
+  font-size: 0.46rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  padding: 2px 9px;
+  border-radius: 3px 3px 0 0;
+}
+
+.d20-ficha-body {
+  padding: 6px 11px;
+}
+
+.d20-ficha-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #c8a86a;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+
+.d20-ficha-ref {
+  font-family: var(--font-text);
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: #5a3e1e;
+}
+
+.d20-ficha-sello {
+  font-family: var(--font-text);
+  font-size: 0.42rem;
+  font-weight: 800;
+  color: #1a4a7a;
+  border: 1px solid #1a4a7a;
+  padding: 1px 4px;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.d20-ficha-linea {
+  border-bottom: 1px solid rgba(180,140,80,0.2);
+  padding: 1.5px 0;
+}
+
+.d20-ficha-linea-text {
+  font-family: var(--font-text);
+  font-size: 0.61rem;
+  color: #3a2810;
+  line-height: 1.3;
+}
+
+.d20-ficha-empty {
+  font-family: var(--font-subtitle);
+  font-size: 0.72rem;
+  font-style: italic;
+  color: rgba(90,62,43,0.38);
+  padding: 4px 0;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PÁGINA DERECHA — Guión / descripción
+   ═══════════════════════════════════════════════════════════════════ */
+.d20-script-viewer {
+  flex: 0 0 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(20,30,60,0.05);
+  border: 1px solid rgba(30,50,100,0.18);
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 42%;
+}
+
+.d20-script-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  background: var(--petrol-blue);
+  border-radius: 3px 3px 0 0;
+  flex-shrink: 0;
+}
+
+.d20-script-icon {
+  font-size: 0.82rem;
+}
+
+.d20-script-title {
+  font-family: var(--font-text);
+  font-size: clamp(0.55rem, 1vw, 0.63rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--aged-paper);
+  flex: 1;
+}
+
+.d20-script-live {
+  font-family: var(--font-text);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #ff4040;
+  letter-spacing: 0.08em;
+  animation: d20-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes d20-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+.d20-script-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 9px 13px;
+  min-height: 0;
+}
+
+.d20-script-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.d20-script-body::-webkit-scrollbar-thumb {
+  background: rgba(30,50,100,0.18);
+  border-radius: 2px;
+}
+
+.d20-script-empty {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: rgba(28,26,23,0.28);
+  text-align: center;
+}
+
+.d20-script-empty-icon {
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.d20-script-empty p {
+  font-family: var(--font-text);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.d20-script-headline {
+  font-family: var(--font-title);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: var(--petrol-blue);
+  margin-bottom: 7px;
+  line-height: 1.2;
+}
+
+.d20-script-para {
+  font-family: var(--font-subtitle);
+  font-size: clamp(0.75rem, 1.25vw, 0.85rem);
+  color: var(--soft-ink);
+  line-height: 1.62;
+  margin-bottom: 6px;
+}
+
+.d20-script-para--header {
+  font-family: var(--font-text);
+  font-size: clamp(0.55rem, 0.95vw, 0.63rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--aged-gold);
+  margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .d20-book { flex-direction: column; }
+  .d20-page { flex: 1; min-height: 0; }
+  .d20-mac { max-width: 300px; }
+  .d20-chat { width: 32%; }
+  .d20-script-viewer { max-height: 200px; }
+}
+
+@media (max-width: 768px) {
+  .d20-mac { max-width: 260px; }
+  .d20-chat { width: 35%; }
+  .d20-hito-title { font-size: 0.75rem; }
+  .d20-script-viewer { max-height: 180px; }
+}
+
+@media (max-width: 480px) {
+  .d20-mac { max-width: 95%; }
+  .d20-chat { width: 38%; }
+  .d20-ficha { display: none; }
+  .d20-mac-base { display: none; }
+  .d20-script-viewer { max-height: 160px; }
+}
