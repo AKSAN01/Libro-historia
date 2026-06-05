@@ -37,7 +37,7 @@ export const DecadePage = () => {
   if (tag === '80s') return <Decade80s />;
   if (tag === '90s') return <Decade90s />;
   if (tag === '00s') return <Decada00s />;
-  if (tag === '20s') return <Decade20s />;
+  if (tag === '20s') return <Decada20s />;
 
   // ─── Ruta genérica para las demás décadas ────────────────────────
 
