@@ -10,7 +10,7 @@ import { Decade60s } from './Decade60s';
 import { Decade70s } from './Decade70s.jsx';
 import { Decada50s } from './Decada50s';
 import { Decada00s } from './Decada00s';
-import { Decade20s } from './Decada2020s';
+import { Decada20s } from "./Decada2020s/Decada20s.jsx";
 
 export const DecadePage = () => {
   const { tag } = useParams();

@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
 import { DecadePage } from './components/DecadePage';
 import Decada2010 from './components/Decada2010';
-import { Decada20s } from './components/Decada20s';
+import { Decada20s } from './components/Decada2020s/Decada20s';
 import MinigameRouter from './minigames/MinigameRouter';
 
 export default function App() {
